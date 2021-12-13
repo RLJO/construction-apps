@@ -51,13 +51,13 @@
 
     <!--ACTION (Equipments) [product.template]-->
     <record id="action_view_equipment" model="ir.actions.act_window">
-        <field name="name">Products</field>
+        <field name="name">Equipments</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref=""/>
         <field name="domain">[('product_type_id','=','equipment')]</field>
-        <field name="context">{'product_type_id' : 'equipment'}</field>
+        <field name="context">{'default_product_type_id' : 'equipment'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to define a new product.
@@ -73,7 +73,7 @@
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref=""/>
         <field name="domain">[('product_type_id','=','vehicle')]</field>
-        <field name="context">{'product_type_id' : 'vehicle'}</field>
+        <field name="context">{'default_product_type_id' : 'vehicle'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to define a new product.
@@ -89,7 +89,7 @@
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref=""/>
         <field name="domain">[('product_type_id','=','labour')]</field>
-        <field name="context">{'product_type_id' : 'labour'}</field>
+        <field name="context">{'default_product_type_id' : 'labour'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to define a new product.
@@ -99,13 +99,13 @@
 
     <!--ACTION (Service) [product.template]-->
     <record id="action_view_service" model="ir.actions.act_window">
-        <field name="name">Products</field>
+        <field name="name">Services</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref=""/>
         <field name="domain">[('product_type_id','=','service')]</field>
-        <field name="context">{'product_type_id' : 'service'}</field>
+        <field name="context">{'default_product_type_id' : 'service'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to define a new product.
@@ -139,18 +139,18 @@
         name = "Vehicles"
         parent = "menu_materials"
         action = "action_view_vehicles"
-        sequence="3"/>
+        sequence="5"/>
 
     <menuitem id="menu_sub_service"
         name = "Service"
         parent = "menu_materials"
         action = "action_view_service"
-        sequence="4"/>
+        sequence="3"/>
 
     <menuitem id="menu_sub_labour"
         name = "Labour"
         parent = "menu_materials"
         action = "action_view_labour"
-        sequence="5"/>
+        sequence="4"/>
 
 </odoo>

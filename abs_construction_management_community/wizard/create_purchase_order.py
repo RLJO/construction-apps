@@ -30,6 +30,14 @@ class WorkOrderPurchaseOrder(models.TransientModel):
     work_order_id = fields.Many2one('project.task', string = 'Work Order', readonly = True)
     supplier_id = fields.Many2one('res.partner', string = 'Supplier')
     material_ids = fields.One2many('workorder.material','ref_work_order_id', string = 'Materials')
+    product_type_id = fields.Selection([('material','Material'),('labour','Labour'),('service','Service'),('equipment','Equipment'),('vehicle','Vehicle')],string = "Type Of Product")
+
+    @api.onchange('product_type_id')
+    def onchange_product_type_id(self):
+        for record in self:
+            if record.material_ids:
+                for material in record.material_ids:
+                    material.unlink()
 
     @api.model
     def default_get(self, fields):
@@ -37,9 +45,7 @@ class WorkOrderPurchaseOrder(models.TransientModel):
         Move = self.env['project.task']
         if self.env.context.get('active_id'):
             work_order_id = Move.browse(self.env.context['active_ids'])
-
             rec.update({ 'project_id':  work_order_id.project_id.id, 'work_order_id' : work_order_id.id,})
-
             return rec
 
     def create_purchase_order(self):
@@ -80,6 +86,8 @@ class WorkOrderMaterial(models.TransientModel):
     product_qty = fields.Float(string = 'Ordered Quantity', default = '1.00')
     price_unit = fields.Float(string = 'Unit Price', default = '0.00')
     amount_total = fields.Float(string = 'Sub Total', compute = 'compute_amount_total')
+    product_type_id = fields.Selection([('material','Material'),('labour','Labour'),('service','Service'),('equipment','Equipment'),('vehicle','Vehicle')],string = "Type Of Product",related='ref_work_order_id.product_type_id')
+
 
     @api.onchange('product_id')
     def onchange_product_id(self):

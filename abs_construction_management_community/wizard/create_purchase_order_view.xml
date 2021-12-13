@@ -11,14 +11,16 @@
                     <field name="project_id"/>
                     <field name="work_order_id"/>
                     <field name="supplier_id" required = '1'/>
+                    <field name="product_type_id" required = '1'/>
                 </group>
             </group>
-            <group string = "Materials">
+            <group string = "Request Lines">
                 <field name ="material_ids" nolabel = "1">
                     <tree editable = "bottom">
 <!--                        <field name = "product_id" required = 'True' domain="[('product_type_id','=','material')]"/>-->
-                        <field name = "product_id" required = 'True'/>
+                        <field name = "product_id" required = 'True' domain="[('product_type_id', '=', product_type_id)]"/>
                         <field name = "description"/>
+                        <field name = "product_type_id" invisible="1"/>
                         <field name = "product_qty"/>
                         <field name = "price_unit"/>
                         <field name = "amount_total"/>
