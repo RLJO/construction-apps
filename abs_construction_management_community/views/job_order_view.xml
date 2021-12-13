@@ -27,7 +27,7 @@
                     <button name = "action_pending" type = "object" string = "Pending" class="btn-primary" attrs = "{'invisible':[('state','in',['draft','pending','complete'])]}"/>
                     <button name = "action_complete" type = "object" string = "Complete" class="btn-primary" attrs = "{'invisible':[('state','in',['draft','pending','complete'])]}"/>
 <!--                    <button name = "%(abs_construction_management_community.action_view_purchase_order_details_form)d" type = "action" string = "Create Purchase Order" class="btn-primary" attrs = "{'invisible':['|',('purchase_order_exempt','=',True),('state','in',['draft','inprogress'])]}"/>-->
-                    <button name = "%(abs_construction_management_community.action_view_purchase_order_details_form)d" type = "action" string = "Create Material Request" class="btn-primary" attrs = "{'invisible':[('state','in',['draft','complete'])]}"/>
+                    <button name = "%(abs_construction_management_community.action_view_purchase_order_details_form)d" type = "action" string = "Create Request" class="btn-primary" attrs = "{'invisible':[('state','in',['draft','complete'])]}"/>
                     <field name="state" widget="statusbar" statusbar_visible="inprogress,pending,complete"/>
                 </xpath>
                 <xpath expr="//div[@name='button_box']" position = 'inside'>
