@@ -231,12 +231,30 @@
         action = "action_view_job_cost_sheet_menu"
         groups = "abs_construction_management_community.group_construction_user"/>
 
-    <!--MENU [Cost Sheet]-->
+    <!--MENU [Estimate Cost Sheet]-->
     <menuitem id="menu_job_estimate_costs"
         name = "Estimate Cost Sheet"
         parent = "menu_job_costs"
         sequence="1"
         action = "action_view_job_cost_sheet_menu"
+        groups = "abs_construction_management_community.group_construction_user"/>
+
+    <record id="action_view_purchase_order_menu" model="ir.actions.act_window">
+        <field name="name">Purchase Order</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{'form_view_ref': 'purchase.purchase_order_form'}
+        </field>
+        <field name="view_id" ref="purchase.purchase_order_kpis_tree"/>
+    </record>
+
+    <!--MENU [Real Cost Sheet]-->
+    <menuitem id="menu_job_real_costs"
+        name = "Real Cost Sheet"
+        parent = "menu_job_costs"
+        sequence="2"
+        action = "action_view_purchase_order_menu"
         groups = "abs_construction_management_community.group_construction_user"/>
 
 </odoo>
