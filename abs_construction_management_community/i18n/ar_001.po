@@ -1,0 +1,1347 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* abs_construction_management_community
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-08 18:50+0000\n"
+"PO-Revision-Date: 2021-12-08 18:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_equipment_request_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+msgid "<span><strong>Assigned To</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+msgid "<span><strong>Company</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+msgid "<span><strong>Create Date</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+msgid "<span><strong>Created By</strong></span>"
+msgstr "انشأ من قبل"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_equipment_request_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+msgid "<span><strong>Created On</strong></span>"
+msgstr "تم إنشاؤها على"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+msgid "<span><strong>Customer</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+msgid "<span><strong>Deadline</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_vehicle_request_document
+msgid "<span><strong>Driver</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_vehicle_request_document
+msgid "<span><strong>Duration</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_equipment_request_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_vehicle_request_document
+msgid "<span><strong>Job Order</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+msgid "<span><strong>Name</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_equipment_request_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_vehicle_request_document
+msgid "<span><strong>Project</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_vehicle_request_document
+msgid "<span><strong>Rent Per Hour</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+msgid "<span><strong>Starting Date</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_vehicle_request_document
+msgid "<span><strong>Total</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+msgid "<span><strong>Type Of Issue</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_vehicle_request_document
+msgid "<span><strong>Vehicle</strong></span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+msgid "<span>Description</span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_equipment_request_document
+msgid "<span>Equipments</span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+msgid "<span>Extra Information</span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_form
+msgid "<span>Hours</span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+msgid "<span>Invoice Lines</span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+msgid "<span>Labour Estimation</span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+msgid "<span>Material Estimation</span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+msgid "<span>Overhead Estimation</span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+msgid "<span>Timesheet</span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.product_normal_form_view_inherited
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.product_template_only_form_view_inherited
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_form
+msgid "<span>per hour</span>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+msgid "<strong class=\"mr16\">Subtotal: </strong>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+msgid "<strong>Planned Hours:</strong>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+msgid "<strong>Remaining Hours:</strong>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_equipment_request_document
+msgid "<strong>Subtotal: </strong>"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/vehicle_request.py:0
+#, python-format
+msgid "Add Driver"
+msgstr "أضف سائق"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/job_cost_sheet.py:0
+#, python-format
+msgid "Add at least one material for estimation."
+msgstr "أضف مادة واحدة على الأقل للتقدير."
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/wizard/create_purchase_order.py:0
+#, python-format
+msgid "Add at least one material."
+msgstr "أضف مادة واحدة على الأقل."
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/equipment_request.py:0
+#, python-format
+msgid "Add some equipment lines."
+msgstr "أضف بعض خطوط المعدات."
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/project_issues.py:0
+#, python-format
+msgid "Add some invoice lines."
+msgstr "أضف بعض سطور الفاتورة."
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+msgid "Amount"
+msgstr "كمية"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+msgid "Analytic Account"
+msgstr "حساب تحليلي"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_equipment_request_menu_form
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_form
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_form
+msgid "Approve"
+msgstr "يوافق"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__equipment_request__state__approved
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__job_cost_sheet__state__approved
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__vehicle_request__state__approved
+msgid "Approved"
+msgstr "وافق"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__assigned_user_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__user_id
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_equipment_request_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_issue_menu_filter
+msgid "Assigned To"
+msgstr "مخصص ل"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__invoice_count
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__invoice_count
+msgid "Bills"
+msgstr "الفواتير"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_purchase_order_details_form
+msgid "Cancel"
+msgstr "يلغي"
+
+#. module: abs_construction_management_community
+#: model:product.product,name:abs_construction_management_community.equipment_request_product_id
+#: model:product.template,name:abs_construction_management_community.equipment_request_product_id_product_template
+msgid "Charges of Equipment"
+msgstr "رسوم المعدات"
+
+#. module: abs_construction_management_community
+#: model:product.product,name:abs_construction_management_community.project_issue_product_id
+#: model:product.template,name:abs_construction_management_community.project_issue_product_id_product_template
+msgid "Charges of Issue Test"
+msgstr "رسوم اختبار الإصدار"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.actions.act_window,help:abs_construction_management_community.open_view_employee_list_my_inherited
+msgid "Click to add a new employee."
+msgstr "انقر لإضافة موظف جديد."
+
+#. module: abs_construction_management_community
+#: model_terms:ir.actions.act_window,help:abs_construction_management_community.action_view_equipment
+#: model_terms:ir.actions.act_window,help:abs_construction_management_community.action_view_material
+#: model_terms:ir.actions.act_window,help:abs_construction_management_community.action_view_vehicles
+msgid "Click to define a new product."
+msgstr "انقر لتحديد منتج جديد."
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__close_date
+msgid "Close Date"
+msgstr "تاريخ قريب"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__company_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__company_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__company_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__company_id
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_filter
+msgid "Company"
+msgstr "شركة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__project_task__state__complete
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_task_form2_inherited
+msgid "Complete"
+msgstr "مكتمل"
+
+#. module: abs_construction_management_community
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_configuration
+msgid "Configuration"
+msgstr "ترتيب"
+
+#. module: abs_construction_management_community
+#: model:ir.module.category,name:abs_construction_management_community.module_category_construction_management
+#: model:ir.ui.menu,name:abs_construction_management_community.construction_management
+msgid "Construction Management"
+msgstr "إدارة الإنشاءات"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/project.py:0
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_job_cost_sheet_menu
+#: model:ir.actions.report,name:abs_construction_management_community.report_job_cost_sheet
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__cost_sheet_count
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_job_costs
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_form
+#, python-format
+msgid "Cost Sheet"
+msgstr "ورقة التكلفة"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_graph
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_pivot
+msgid "Cost Sheet Analysis"
+msgstr "تحليل ورقة التكلفة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__cost_sheet_ids
+msgid "Cost Sheets"
+msgstr "ورقة التكلفة"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.edit_project_inherit
+msgid "Costing"
+msgstr "التكلفة"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_purchase_order_details_form
+msgid "Create"
+msgstr "إنشاء"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_equipment_request_menu_form
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_issue_menu_form
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_form
+msgid "Create Bill"
+msgstr "إنشاء الفاتورة"
+
+#. module: abs_construction_management_community
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_purchase_order_details_form
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_form
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_purchase_order_details_form
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_task_form2_inherited
+msgid "Create Purchase Order"
+msgstr "إنشاء أمر شراء"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.actions.act_window,help:abs_construction_management_community.action_view_project
+msgid "Create a new project."
+msgstr "قم بإنشاء مشروع جديد."
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__user_id
+msgid "Created By"
+msgstr "انشأ من قبل"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_issue_type__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_notes__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__create_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_purchase_order__create_uid
+msgid "Created by"
+msgstr "انشأ من قبل"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_issue_type__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_notes__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__create_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_purchase_order__create_date
+msgid "Created on"
+msgstr "تم إنشاؤها على"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__currency_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__currency_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__currency_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__currency_id
+msgid "Currency"
+msgstr "عملة"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+msgid "Date"
+msgstr "تاريخ"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__description
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__description
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__description
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__description
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__description
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__description
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__description
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_equipment_request_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_issue_menu_form
+msgid "Description"
+msgstr "وصف"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_move__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_issue_type__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_product_template__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_notes__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__display_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_purchase_order__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__equipment_request__state__done
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__job_cost_sheet__state__done
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__vehicle_request__state__done
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_equipment_request_menu_form
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_form
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_form
+msgid "Done"
+msgstr "منتهي"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__equipment_request__state__draft
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__job_cost_sheet__state__draft
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__project_task__state__draft
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__vehicle_request__state__draft
+msgid "Draft"
+msgstr "مشروع"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__driver_id
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_search
+msgid "Driver"
+msgstr "سائق"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__duration
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+msgid "Duration"
+msgstr "مدة"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_hr_employee
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_order_document
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: abs_construction_management_community
+#: model:ir.actions.act_window,name:abs_construction_management_community.open_view_employee_list_my_inherited
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_employee
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_employee
+msgid "Employees"
+msgstr "الموظفين"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__invoice_ids
+msgid "Equiment Invoices"
+msgstr "فواتير المعادلة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__product_template__product_type_id__equipment
+msgid "Equipment"
+msgstr "ادوات"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__invoice_count
+msgid "Equipment Bill"
+msgstr "فاتورة المعدات"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__equipment_cost
+msgid "Equipment Cost"
+msgstr "تكلفة المعدات"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_equipment_line
+msgid "Equipment Line"
+msgstr "خط المعدات"
+
+#. module: abs_construction_management_community
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_equipment_menu
+#: model:ir.actions.report,name:abs_construction_management_community.report_equipment_request
+#: model:ir.model,name:abs_construction_management_community.model_equipment_request
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_bank_statement_line__equipment_invoice_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_move__equipment_invoice_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_payment__equipment_invoice_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__equipment_request_count
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_equipment_request
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_equipment_request_menu_form
+msgid "Equipment Request"
+msgstr "طلب معدات"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/job_order.py:0
+#, python-format
+msgid "Equipment Requests"
+msgstr "طلبات المعدات"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__equipment_ids
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_Equipments
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_equipments
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_equipment_request_menu_form
+msgid "Equipments"
+msgstr "المعدات"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__estimation_sheet_cost
+msgid "Estimation Cost"
+msgstr "تكلفة تقدير"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__description
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_form
+msgid "Extra Information"
+msgstr "معلومات اضافية"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__extra_material_amount
+msgid "Extra Material Amount"
+msgstr "كمية المواد الإضافية"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__extra_material_cost
+msgid "Extra Material Cost"
+msgstr "تكلفة المواد الإضافية"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_equipment_request_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_notes_menu_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_issue_menu_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_notes_menu_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_search
+msgid "Group By"
+msgstr "مجموعة من"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_move__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_hr_employee__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_issue_type__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_product_template__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_notes__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_purchase_order__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_purchase_order__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__project_task__state__inprogress
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_task_form2_inherited
+msgid "In Progress"
+msgstr "في تقدم"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/equipment_request.py:0
+#: code:addons/abs_construction_management_community/models/project_issues.py:0
+#: code:addons/abs_construction_management_community/models/vehicle_request.py:0
+#, python-format
+msgid "Invoice"
+msgstr "فاتورة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__invoice_amount
+msgid "Invoice Amount"
+msgstr "قيمة الفاتورة"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_issue_menu_form
+msgid "Invoice Lines"
+msgstr "خطوط الفاتورة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__equipment_request__state__invoiced
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__vehicle_request__state__invoiced
+msgid "Invoiced"
+msgstr "مفوترة"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/project.py:0
+#, python-format
+msgid "Invoices"
+msgstr "الفواتير"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_hr_employee__driver
+msgid "Is a Driver"
+msgstr "سائق"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__issue_line_ids
+msgid "Issue Invoices"
+msgstr "إصدار الفواتير"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__isuue_invoice_id
+msgid "Issue Reference ID"
+msgstr "معرّف مرجع المشكلة"
+
+#. module: abs_construction_management_community
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_issue_type_menu_tree
+#: model:ir.model,name:abs_construction_management_community.model_issue_type
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_issue_type_menu_form
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_issue_menu_filter
+msgid "Issue Type"
+msgstr "نوع القضية"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_job_cost_sheet
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_purchase_order__job_cost_sheet_id
+msgid "Job Cost Sheet"
+msgstr "ورقة تكلفة الوظيفة"
+
+#. module: abs_construction_management_community
+#: model:ir.actions.report,name:abs_construction_management_community.report_job_order
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__job_order_id
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_equipment_request_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_search
+msgid "Job Order"
+msgstr "طلب الوظيفة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__job_order_ids
+msgid "Job Orders"
+msgstr "أوامر العمل"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__job_sheet_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__job_sheet_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__job_sheet_id
+msgid "Job Sheet"
+msgstr "ورقة عمل"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_account_move
+msgid "Journal Entry"
+msgstr "قيد اليومية"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_material_labour
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__material_labour_ids
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__product_template__product_type_id__labour
+msgid "Labour"
+msgstr "العمل"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__amount_labour
+msgid "Labour Cost"
+msgstr "أجرة العاملين"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_form
+msgid "Labour Estimation"
+msgstr "تقدير العمالة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_move____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_hr_employee____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_issue_type____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_product_template____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_notes____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material____last_update
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_purchase_order____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_issue_type__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_notes__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__write_uid
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_purchase_order__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_issue_type__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_notes__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__write_date
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_purchase_order__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model:res.groups,name:abs_construction_management_community.group_construction_manager
+msgid "Manager"
+msgstr "مدير"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_material_material
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__product_template__product_type_id__material
+msgid "Material"
+msgstr "مادة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__amount_material
+msgid "Material Cost"
+msgstr "تكلفة المادة"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_form
+msgid "Material Estimation"
+msgstr "تقدير المواد"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__material_ids
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_purchase_order__material_ids
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_materials
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_materials
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_purchase_order_details_form
+msgid "Materials"
+msgstr "مواد"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_issue_type__name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__cost_sheet_name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__name
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__name
+msgid "Name"
+msgstr "اسم"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/job_order.py:0
+#: code:addons/abs_construction_management_community/models/project.py:0
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__notes
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_notes__notes
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__notes_count
+#, python-format
+msgid "Notes"
+msgstr "ملحوظات"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.actions.act_window,help:abs_construction_management_community.action_view_task_inherited
+msgid ""
+"Odoo's project management allows you to manage the pipeline of your tasks "
+"efficiently. You can track progress, discuss on tasks, attach documents, "
+"etc."
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__product_qty
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__product_qty
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__product_qty
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__product_qty
+msgid "Ordered Quantity"
+msgstr "الكمية المطلوبة"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.actions.act_window,help:abs_construction_management_community.action_view_project
+msgid ""
+"Organize your activities (plan tasks, track issues, invoice timesheets) for "
+"internal, personal or customer projects."
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_material_overhead
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__material_overhead_ids
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__product_template__product_type_id__overhead
+msgid "Overhead"
+msgstr "تكاليف غير مباشرة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__amount_overhead
+msgid "Overhead Cost"
+msgstr "التكاليف العامة"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_form
+msgid "Overhead Estimation"
+msgstr "تقدير النفقات العامة"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/equipment_request.py:0
+#: code:addons/abs_construction_management_community/models/vehicle_request.py:0
+#, python-format
+msgid "Payment is remain!"
+msgstr "يبقى الدفع!"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__project_task__state__pending
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_task_form2_inherited
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__product_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__product_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__product_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__product_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__product_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__product_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_product_template
+msgid "Product Template"
+msgstr "قالب المنتج"
+
+#. module: abs_construction_management_community
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_equipment
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_material
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_vehicles
+msgid "Products"
+msgstr "منتجات"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_project_project
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_bank_statement_line__project_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_move__project_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_payment__project_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__project_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__project_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__project_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__project_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_notes__project_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__project_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_purchase_order__project_id
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_equipment_request_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_notes_menu_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_issue_menu_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_notes_menu_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_search
+msgid "Project"
+msgstr "المشروع"
+
+#. module: abs_construction_management_community
+#: model:ir.actions.act_window,name:abs_construction_management_community.project_task_action_dashboard
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_project_menu_graph
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_project_menu_pivot
+msgid "Project Analysis"
+msgstr "تحليل المشروع"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__invoice_ids
+msgid "Project Invoices"
+msgstr "فواتير المشروع"
+
+#. module: abs_construction_management_community
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_project_issue_menu
+#: model:ir.actions.report,name:abs_construction_management_community.report_project_issue
+#: model:ir.model,name:abs_construction_management_community.model_project_issue
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_bank_statement_line__project_issue_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_move__project_issue_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_payment__project_issue_id
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_issue_menu_form
+msgid "Project Issue"
+msgstr "قضية المشروع"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__project_issue_cost
+msgid "Project Issue Cost"
+msgstr "تكلفة إصدار المشروع"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_project_issue_line
+msgid "Project Issue Line"
+msgstr "خط قضايا المشروع"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/job_order.py:0
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_project_issue
+#, python-format
+msgid "Project Issues"
+msgstr "قضايا المشروع"
+
+#. module: abs_construction_management_community
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_project_notes_menu
+#: model:ir.model,name:abs_construction_management_community.model_project_notes
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_project_notes
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_notes_menu_form
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_notes_menu_form
+msgid "Project Notes"
+msgstr "ملاحظات المشروع"
+
+#. module: abs_construction_management_community
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_project
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_projects
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_project
+msgid "Projects"
+msgstr "المشاريع"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__purchase_exempt
+msgid "Purchase Exempt"
+msgstr "شراء معفى"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/job_order.py:0
+#: model:ir.model,name:abs_construction_management_community.model_purchase_order
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__purchase_order_count
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__job_cost_sheet__state__purchase
+#, python-format
+msgid "Purchase Order"
+msgstr "أمر شراء"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__purchase_order_exempt
+msgid "Purchase Order Exempt"
+msgstr "أمر الشراء معفى"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__purchase_order_ids
+msgid "Purchase Orders"
+msgstr "أمر شراء"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/job_cost_sheet.py:0
+#, python-format
+msgid "Purchase order"
+msgstr "أمر شراء"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__purchase_order_count
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__purchase_order_ids
+msgid "Purchases"
+msgstr "المشتريات"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__product_qty
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__product_qty
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_equipment_request_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+msgid "Quantity"
+msgstr "كمية"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__equipment_request_id
+msgid "Reference ID"
+msgstr "الرقم المرجعي"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__ref_work_order_id
+msgid "Reference Work Order"
+msgstr "طلب العمل المرجعي"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_product_product__rent_per_hours
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_product_template__rent_per_hours
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__rent
+msgid "Rent"
+msgstr "إيجار"
+
+#. module: abs_construction_management_community
+#: model:product.product,name:abs_construction_management_community.vehicle_request_product_id
+#: model:product.template,name:abs_construction_management_community.vehicle_request_product_id_product_template
+msgid "Rent of Vehicle"
+msgstr "إيجار السيارة"
+
+#. module: abs_construction_management_community
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_project_analysis_report
+msgid "Reporting"
+msgstr "الإبلاغ"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__user_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_notes__user_id
+msgid "Responsible Person"
+msgstr "شخص مسؤول"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_notes_menu_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_notes_menu_filter
+msgid "Responsible User"
+msgstr "مستخدم مسؤول"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_filter
+msgid "Search Cost Sheet"
+msgstr "بحث ورقة التكلفة"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_equipment_request_filter
+msgid "Search Equipment Request"
+msgstr "طلب معدات البحث"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_issue_menu_filter
+msgid "Search Project Issue"
+msgstr "بحث في قضية المشروع"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_notes_menu_filter
+msgid "Search Project Notes"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_search
+msgid "Search Vehicle"
+msgstr "البحث عن مركبة"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_notes_menu_filter
+msgid "Search Work Notes"
+msgstr "ابحث عن ملاحظات العمل"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__name
+msgid "Sheet Number"
+msgstr "عدد ورقة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__starting_date
+msgid "Start Date"
+msgstr "تاريخ البدء"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__state
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__state
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__state
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__state
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_equipment_request_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_filter
+msgid "State"
+msgstr "ولاية"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__amount_total
+msgid "Sub Total"
+msgstr "المجموع الفرعي"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__equipment_amount
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__labour_amount_total
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__material_amount_total
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__overhead_amount_total
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__amount_total
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_equipment_request_document
+msgid "Subtotal"
+msgstr "المجموع الفرعي"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__supplier_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__supplier_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__supplier_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__supplier_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_purchase_order__supplier_id
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_cost_sheet_menu_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_issue_menu_filter
+msgid "Supplier"
+msgstr "المورد"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__tag_ids
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_notes__tag_ids
+msgid "Tags"
+msgstr "العلامات"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_project_task
+msgid "Task"
+msgstr "المهمة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__amount_total
+msgid "Total"
+msgstr "المجموع"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__total_amount
+msgid "Total Amount"
+msgstr "المبلغ الإجمالي"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_cost_sheet__amount_total
+msgid "Total Cost"
+msgstr "التكلفة الإجمالية"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__total_amount
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.edit_project_inherit
+msgid "Total Costing"
+msgstr "التكلفة الإجمالية"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue__issue_type_id
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_issue_type
+msgid "Type Of Issue"
+msgstr "نوع المشكلة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_product_product__product_type_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_product_template__product_type_id
+msgid "Type Of Product"
+msgstr "نوع المنتج"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_line__price_unit
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_labour__price_unit
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_material__price_unit
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_material_overhead__price_unit
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_issue_line__price_unit
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_material__price_unit
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_equipment_request_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_job_cost_sheet_document
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.report_project_issue_document
+msgid "Unit Price"
+msgstr "سعر الوحدة"
+
+#. module: abs_construction_management_community
+#: model:product.product,uom_name:abs_construction_management_community.equipment_request_product_id
+#: model:product.product,uom_name:abs_construction_management_community.project_issue_product_id
+#: model:product.product,uom_name:abs_construction_management_community.vehicle_request_product_id
+#: model:product.template,uom_name:abs_construction_management_community.equipment_request_product_id_product_template
+#: model:product.template,uom_name:abs_construction_management_community.project_issue_product_id_product_template
+#: model:product.template,uom_name:abs_construction_management_community.vehicle_request_product_id_product_template
+msgid "Units"
+msgstr "الوحدات"
+
+#. module: abs_construction_management_community
+#: model:res.groups,name:abs_construction_management_community.group_construction_user
+msgid "User"
+msgstr "مستخدم"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__vehicle_id
+#: model:ir.model.fields.selection,name:abs_construction_management_community.selection__product_template__product_type_id__vehicle
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_search
+msgid "Vehicle"
+msgstr "مركبة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__invoice_count
+msgid "Vehicle Bill"
+msgstr "فاتورة السيارة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_project__vehicle_cost
+msgid "Vehicle Cost"
+msgstr "تكلفة السيارة"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_form
+msgid "Vehicle Detail"
+msgstr "تفاصيل السيارة"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__invoice_ids
+msgid "Vehicle Invoices"
+msgstr "فواتير المركبات"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/employee.py:0
+#: code:addons/abs_construction_management_community/models/job_order.py:0
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_vehicle_menu
+#: model:ir.actions.report,name:abs_construction_management_community.report_vehicle_request
+#: model:ir.model,name:abs_construction_management_community.model_vehicle_request
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_bank_statement_line__vehicle_invoice_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_move__vehicle_invoice_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_account_payment__vehicle_invoice_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_hr_employee__vehicle_request_count
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__vehicle_request_count
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_vehicle_request
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_vehicle_request_menu_form
+#, python-format
+msgid "Vehicle Request"
+msgstr "طلب مركبة"
+
+#. module: abs_construction_management_community
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_vehicles
+msgid "Vehicles"
+msgstr "مركبات"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/equipment_request.py:0
+#: code:addons/abs_construction_management_community/models/project_issues.py:0
+#, python-format
+msgid "Warning!"
+msgstr "تحذير"
+
+#. module: abs_construction_management_community
+#: model_terms:ir.actions.act_window,help:abs_construction_management_community.open_view_employee_list_my_inherited
+msgid ""
+"With just a quick glance on the Odoo employee screen, you\n"
+"                can easily find all the information you need for each person;\n"
+"                contact data, job position, availability, etc."
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_job_notes_menu
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_job_notes
+msgid "Work Notes"
+msgstr "ملاحظات العمل"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__task_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__task_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__task_id
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_workorder_purchase_order__work_order_id
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_job_notes_menu_filter
+#: model_terms:ir.ui.view,arch_db:abs_construction_management_community.view_project_issue_menu_filter
+msgid "Work Order"
+msgstr "طلب العمل"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__project_issue_count
+msgid "Work Order Issues"
+msgstr "مشاكل أمر العمل"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__notes_count
+msgid "Work Order Notes"
+msgstr ""
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_project_task__task_ref_name
+msgid "Work Order Number"
+msgstr "ملاحظات أمر العمل"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_equipment_request__task_ids
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_job_notes__task_ids
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_vehicle_request__task_ids
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_job_order
+#: model:ir.ui.menu,name:abs_construction_management_community.menu_sub_job_order
+msgid "Work Orders"
+msgstr "طلبات العمل"
+
+#. module: abs_construction_management_community
+#: model:ir.model.fields,field_description:abs_construction_management_community.field_purchase_order__work_order_id
+msgid "Work order"
+msgstr "أمر العمل"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_workorder_material
+msgid "Workorder Material"
+msgstr "مواد طلب العمل"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_workorder_purchase_order
+msgid "Workorder Purchase Order"
+msgstr "أمر شراء أمر العمل"
+
+#. module: abs_construction_management_community
+#: model:ir.actions.act_window,name:abs_construction_management_community.action_view_task_inherited
+msgid "Wrok Orders"
+msgstr "طلب العمل"
+
+#. module: abs_construction_management_community
+#: code:addons/abs_construction_management_community/models/equipment_request.py:0
+#: code:addons/abs_construction_management_community/models/project_issues.py:0
+#, python-format
+msgid "You must first select a Project and Work Order!"
+msgstr "يجب عليك أولاً تحديد مشروع وأمر عمل!"
+
+#. module: abs_construction_management_community
+#: model:ir.model,name:abs_construction_management_community.model_job_notes
+msgid "job Notes"
+msgstr "ملاحظات الوظيفة"
