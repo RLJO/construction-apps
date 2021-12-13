@@ -63,6 +63,9 @@ access_hr_employee_construction_user,access_hr_employee_construction_user,hr.mod
 access_hr_employee_construction_manager,access_hr_employee_construction_manager,hr.model_hr_employee,group_construction_manager,1,1,1,1
 
 access_workorder_purchase_order,access_workorder_purchase_order,model_workorder_purchase_order,base.group_user,1,1,1,1 
-access_workorder_material,access_workorder_material,model_workorder_material,base.group_user,1,1,1,1 
+access_workorder_material,access_workorder_material,model_workorder_material,base.group_user,1,1,1,1
+
+access_material_vehicle,access_material_vehicle,model_material_vehicle,,1,1,1,1
+access_material_equipment,access_material_equipment,model_material_equipment,,1,1,1,1
 
 

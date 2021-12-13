@@ -29,7 +29,7 @@ class JobCostSheet(models.Model):
     name = fields.Char("Sheet Number")
     cost_sheet_name = fields.Char(string = 'Name',required = True)
     project_id = fields.Many2one('project.project', string = 'Project')
-    supplier_id = fields.Many2one('res.partner', string = 'Supplier', required = True)
+    supplier_id = fields.Many2one('res.partner', string = 'Customer', required = True)
     close_date = fields.Datetime(string = 'Close Date', readonly = True)
     user_id = fields.Many2one('res.users', string = 'Created By')
     company_id = fields.Many2one('res.company', string='Company', index=True, default=lambda self: self.env.user.company_id.id)
@@ -37,13 +37,17 @@ class JobCostSheet(models.Model):
     purchase_exempt = fields.Boolean(string = 'Purchase Exempt', copy=False)
     description = fields.Text(string = 'Extra Information')
 
-    material_ids = fields.One2many('material.material','job_sheet_id', string = 'Materials', states={'purchase': [('readonly', True)], 'done': [('readonly', True)]})
-    material_labour_ids = fields.One2many('material.labour','job_sheet_id', string = 'Labour', states={'purchase': [('readonly', True)], 'done': [('readonly', True)]})
-    material_overhead_ids = fields.One2many('material.overhead','job_sheet_id', string = 'Overhead', states={'purchase': [('readonly', True)], 'done': [('readonly', True)]})
+    material_ids = fields.One2many('material.material','job_sheet_id', string = 'Materials')
+    material_labour_ids = fields.One2many('material.labour','job_sheet_id', string = 'Labour')
+    material_overhead_ids = fields.One2many('material.overhead','job_sheet_id', string = 'Service')
+    material_vehicle_ids = fields.One2many('material.vehicle', 'job_sheet_id', string='Vehicle')
+    material_equipment_ids = fields.One2many('material.equipment', 'job_sheet_id', string='Equipment')
 
     amount_material = fields.Monetary(string='Material Cost', readonly=True, compute = '_amount_material')
     amount_labour = fields.Monetary(string='Labour Cost', readonly=True, compute = '_amount_labour')
-    amount_overhead = fields.Monetary(string='Overhead Cost', readonly=True, compute = '_amount_overhead')
+    amount_overhead = fields.Monetary(string='Service Cost', readonly=True, compute = '_amount_overhead')
+    amount_vehicle = fields.Monetary(string='Vehicle Cost', readonly=True, compute = '_amount_vehicle')
+    amount_equipment = fields.Monetary(string='Equipment Cost', readonly=True, compute = '_amount_equipment')
 
     amount_total = fields.Monetary(string='Total Cost', readonly=True, compute = '_amount_total', store = True)
     state = fields.Selection([('draft','Draft'),('approved','Approved'),('purchase','Purchase Order'),('done','Done')],string = "State", readonly=True, default='draft')
@@ -130,6 +134,10 @@ class JobCostSheet(models.Model):
     def create(self,vals):
         sequence = self.env['ir.sequence'].sudo().get('job.cost.sheet') or ' '
         vals['name'] = sequence
+        if vals.get('project_id'):
+            project_rec = self.search([('project_id', '=', vals.get('project_id'))])
+            if project_rec:
+                raise ValidationError(_("Already created estimation cost for this project."))
         result = super(JobCostSheet, self).create(vals)
 
         return result
@@ -158,29 +166,54 @@ class JobCostSheet(models.Model):
                 amount_overhead += line.overhead_amount_total
             sheet.update({'amount_overhead': round(amount_overhead)})
 
-    @api.depends('material_ids.material_amount_total','material_labour_ids.labour_amount_total','material_overhead_ids.overhead_amount_total')
+    @api.depends('material_vehicle_ids.vehicle_amount_total')
+    def _amount_vehicle(self):
+        for sheet in self:
+            amount_vehicle = 0.0
+            for line in sheet.material_vehicle_ids:
+                amount_vehicle += line.vehicle_amount_total
+            sheet.update({'amount_vehicle': round(amount_vehicle)})
+
+    @api.depends('material_equipment_ids.equipment_amount_total')
+    def _amount_equipment(self):
+        for sheet in self:
+            amount_equipment = 0.0
+            for line in sheet.material_equipment_ids:
+                amount_equipment += line.equipment_amount_total
+            sheet.update({'amount_equipment': round(amount_equipment)})
+
+    @api.depends('material_ids.material_amount_total','material_labour_ids.labour_amount_total','material_overhead_ids.overhead_amount_total','material_vehicle_ids.vehicle_amount_total','material_equipment_ids.equipment_amount_total')
     def _amount_total(self):
         for cost_sheet in self:
             amount_material = 0.0
             amount_labour = 0.0
             amount_overhead = 0.0
+            amount_vehicle = 0.0
+            amount_equipment = 0.0
             for line in cost_sheet.material_ids:
                 amount_material += line.material_amount_total
             for line in cost_sheet.material_labour_ids:
                 amount_labour += line.labour_amount_total
             for line in cost_sheet.material_overhead_ids:
                 amount_overhead += line.overhead_amount_total
-            cost_sheet.amount_total = (amount_material + amount_labour + amount_overhead)
+            for line in cost_sheet.material_vehicle_ids:
+                amount_vehicle += line.vehicle_amount_total
+            for line in cost_sheet.material_equipment_ids:
+                amount_equipment += line.equipment_amount_total
+            cost_sheet.amount_total = (amount_material + amount_labour + amount_overhead + amount_equipment + amount_equipment)
 
 class MaterialMaterial(models.Model):
     _name = 'material.material'
     _description = "Material"
 
     job_sheet_id = fields.Many2one('job.cost.sheet', string = 'Job Sheet')
-    product_id = fields.Many2one('product.product', string = 'Product')
-    description = fields.Char(string = 'Description')
-    product_qty = fields.Float(string = 'Ordered Quantity', default = '1.00')
-    price_unit = fields.Float(string = 'Unit Price', default = '0.00')
+    phase = fields.Char(string='Phase')
+    task = fields.Char(string='Task')
+    product_id = fields.Many2one('product.product', string='Product')
+    description = fields.Char(string='Description')
+    product_qty = fields.Float(string='Vehicle Quantity', default='1.00')
+    price_unit = fields.Float(string='Unit Price', default='0.00')
+    tax_id = fields.Many2one('account.tax', string="Taxes")
     material_amount_total = fields.Float(string = 'Subtotal', compute = 'compute_material_amount_total')
 
     @api.onchange('product_id')
@@ -189,20 +222,26 @@ class MaterialMaterial(models.Model):
             if record.product_id:
                 record.update({'description': record.product_id.name, 'price_unit' : record.product_id.list_price})
 
-    @api.depends('product_qty', 'price_unit')
+    @api.depends('product_qty', 'price_unit', 'tax_id')
     def compute_material_amount_total(self):
         for line in self:
-            line.update({'material_amount_total': line.product_qty * line.price_unit})
+            tax = 0
+            if line.tax_id:
+                tax = (line.product_qty * line.price_unit) * line.tax_id.amount * 0.01
+            line.update({'material_amount_total': (line.product_qty * line.price_unit) + tax})
 
 class MaterialLabour(models.Model):
     _name = 'material.labour'
     _description = "Labour"
 
     job_sheet_id = fields.Many2one('job.cost.sheet', string = 'Job Sheet')
-    product_id = fields.Many2one('product.product', string = 'Product')
-    description = fields.Char(string = 'Description')
-    product_qty = fields.Float(string = 'Ordered Quantity', default = '1.00')
-    price_unit = fields.Float(string = 'Unit Price', default = '0.00')
+    phase = fields.Char(string='Phase')
+    task = fields.Char(string='Task')
+    product_id = fields.Many2one('product.product', string='Product')
+    description = fields.Char(string='Description')
+    product_qty = fields.Float(string='Vehicle Quantity', default='1.00')
+    price_unit = fields.Float(string='Unit Price', default='0.00')
+    tax_id = fields.Many2one('account.tax', string="Taxes")
     labour_amount_total = fields.Float(string = 'Subtotal', compute = 'compute_labour_amount_total')
 
     @api.onchange('product_id')
@@ -211,20 +250,26 @@ class MaterialLabour(models.Model):
             if record.product_id:
                 record.update({'description': record.product_id.name, 'price_unit' : record.product_id.list_price})
 
-    @api.depends('product_qty', 'price_unit')
+    @api.depends('product_qty', 'price_unit', 'tax_id')
     def compute_labour_amount_total(self):
         for line in self:
-            line.update({'labour_amount_total': line.product_qty * line.price_unit})
+            tax = 0
+            if line.tax_id:
+                tax = (line.product_qty * line.price_unit) * line.tax_id.amount * 0.01
+            line.update({'labour_amount_total': (line.product_qty * line.price_unit) + tax})
 
 class MaterialOverhead(models.Model):
     _name = 'material.overhead'
     _description = "Overhead"
 
     job_sheet_id = fields.Many2one('job.cost.sheet', string = 'Job Sheet')
-    product_id = fields.Many2one('product.product', string = 'Product')
-    description = fields.Char(string = 'Description')
-    product_qty = fields.Float(string = 'Ordered Quantity', default = '1.00')
-    price_unit = fields.Float(string = 'Unit Price', default = '0.00')
+    phase = fields.Char(string='Phase')
+    task = fields.Char(string='Task')
+    product_id = fields.Many2one('product.product', string='Product')
+    description = fields.Char(string='Description')
+    product_qty = fields.Float(string='Vehicle Quantity', default='1.00')
+    price_unit = fields.Float(string='Unit Price', default='0.00')
+    tax_id = fields.Many2one('account.tax', string="Taxes")
     overhead_amount_total = fields.Float(string = 'Subtotal', compute = 'compute_overhead_amount_total')
 
     @api.onchange('product_id')
@@ -233,10 +278,69 @@ class MaterialOverhead(models.Model):
             if record.product_id:
                 record.update({'description': record.product_id.name, 'price_unit' : record.product_id.list_price})
 
-    @api.depends('product_qty', 'price_unit')
+    @api.depends('product_qty', 'price_unit', 'tax_id')
     def compute_overhead_amount_total(self):
         for line in self:
-            line.update({'overhead_amount_total': line.product_qty * line.price_unit})
+            tax = 0
+            if line.tax_id:
+                tax = (line.product_qty * line.price_unit) * line.tax_id.amount * 0.01
+            line.update({'overhead_amount_total': (line.product_qty * line.price_unit) + tax})
+
+class MaterialVehicle(models.Model):
+    _name = 'material.vehicle'
+    _description = "Vehicle"
+
+    job_sheet_id = fields.Many2one('job.cost.sheet', string = 'Job Sheet')
+    phase = fields.Char(string='Phase')
+    task = fields.Char(string='Task')
+    product_id = fields.Many2one('product.product', string = 'Product')
+    description = fields.Char(string = 'Description')
+    product_qty = fields.Float(string = 'Vehicle Quantity', default = '1.00')
+    price_unit = fields.Float(string = 'Unit Price', default = '0.00')
+    tax_id = fields.Many2one('account.tax', string="Taxes")
+    vehicle_amount_total = fields.Float(string = 'Subtotal', compute = 'compute_vehicle_amount_total')
+
+    @api.onchange('product_id')
+    def onchange_product_id(self):
+        for record in self:
+            if record.product_id:
+                record.update({'description': record.product_id.name, 'price_unit' : record.product_id.list_price})
+
+    @api.depends('product_qty', 'price_unit', 'tax_id')
+    def compute_vehicle_amount_total(self):
+        for line in self:
+            tax = 0
+            if line.tax_id:
+                tax = (line.product_qty * line.price_unit) * line.tax_id.amount * 0.01
+            line.update({'vehicle_amount_total': (line.product_qty * line.price_unit) + tax})
+
+class MaterialEquipment(models.Model):
+    _name = 'material.equipment'
+    _description = "Equipment"
+
+    job_sheet_id = fields.Many2one('job.cost.sheet', string = 'Job Sheet')
+    phase = fields.Char(string='Phase')
+    task = fields.Char(string='Task')
+    product_id = fields.Many2one('product.product', string = 'Product')
+    description = fields.Char(string = 'Description')
+    product_qty = fields.Float(string = 'Equipment Quantity', default = '1.00')
+    price_unit = fields.Float(string = 'Unit Price', default = '0.00')
+    tax_id = fields.Many2one('account.tax', string="Taxes")
+    equipment_amount_total = fields.Float(string = 'Subtotal', compute = 'compute_equipment_amount_total')
+
+    @api.onchange('product_id')
+    def onchange_product_id(self):
+        for record in self:
+            if record.product_id:
+                record.update({'description': record.product_id.name, 'price_unit' : record.product_id.list_price})
+
+    @api.depends('product_qty', 'price_unit', 'tax_id')
+    def compute_equipment_amount_total(self):
+        for line in self:
+            tax = 0
+            if line.tax_id:
+                tax = (line.product_qty * line.price_unit) * line.tax_id.amount * 0.01
+            line.update({'equipment_amount_total': (line.product_qty * line.price_unit) + tax})
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'

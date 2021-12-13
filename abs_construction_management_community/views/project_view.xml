@@ -29,8 +29,10 @@
                 </xpath>
                 <notebook>
                     <page name="costing" string="Costing">
-                        <group>
+                        <group string = "Estimation Costing">
                             <field name="estimation_sheet_cost"/>
+                        </group>
+                        <group string = "Real Costing">
                             <field name="project_issue_cost"/>
                             <field name="equipment_cost"/>
                             <field name="vehicle_cost"/>
