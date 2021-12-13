@@ -23,5 +23,5 @@ from odoo import api, fields, models, _
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    product_type_id = fields.Selection([('material','Material'),('labour','Labour'),('overhead','Overhead'),('equipment','Equipment'),('vehicle','Vehicle')],string = "Type Of Product")
+    product_type_id = fields.Selection([('material','Material'),('labour','Labour'),('service','Service'),('equipment','Equipment'),('vehicle','Vehicle')],string = "Type Of Product")
     rent_per_hours = fields.Float(string = 'Rent')
