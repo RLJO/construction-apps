@@ -67,7 +67,7 @@
 
     <!--ACTION (Vehicles) [product.template]-->
     <record id="action_view_vehicles" model="ir.actions.act_window">
-        <field name="name">Products</field>
+        <field name="name">Vehicles</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">kanban,tree,form</field>
@@ -83,7 +83,7 @@
 
     <!--ACTION (Labour) [product.template]-->
     <record id="action_view_labour" model="ir.actions.act_window">
-        <field name="name">Products</field>
+        <field name="name">Labour</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">kanban,tree,form</field>
@@ -115,7 +115,7 @@
 
     <!--MENU [Materials]-->
     <menuitem id="menu_materials"
-        name = "Materials"
+        name = "Type Request"
         parent = "construction_management"
         groups = "abs_construction_management_community.group_construction_user"
         sequence="6"/>

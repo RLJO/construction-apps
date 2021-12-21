@@ -30,7 +30,11 @@
                     <button name = "%(abs_construction_management_community.action_view_purchase_order_details_form)d" type = "action" string = "Create Request" class="btn-primary" attrs = "{'invisible':[('state','in',['draft','complete'])]}"/>
                     <field name="state" widget="statusbar" statusbar_visible="inprogress,pending,complete"/>
                 </xpath>
-                <xpath expr="//div[@name='button_box']" position = 'inside'>
+<!--                <xpath expr="//div[@name='button_box']/button[@name='action_subtask']" position = 'attributes'>-->
+<!--                    <attribute name="invisible">1</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//div[@name='button_box']" position='inside'>-->
+                <xpath expr="//div[@name='button_box']/button[@name='action_subtask']" position="after">
                     <button name="action_view_purchase_order"
                             type="object"
                             class="oe_stat_button"
@@ -43,24 +47,24 @@
                             icon="fa-list-alt">
                         <field name="notes_count" widget="statinfo"/>
                     </button>
-                    <button name="action_view_project_issues"
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-align-justify">
-                        <field name="project_issue_count" widget="statinfo"/>
-                    </button>
-                    <button name="action_view_equipment_request"
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-list-ul">
-                        <field name="equipment_request_count" widget="statinfo"/>
-                    </button>
-                    <button name="action_view_vehicle_request"
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-fw o_button_icon fa-truck">
-                        <field name="vehicle_request_count" widget="statinfo"/>
-                    </button>
+<!--                    <button name="action_view_project_issues"-->
+<!--                            type="object"-->
+<!--                            class="oe_stat_button"-->
+<!--                            icon="fa-align-justify">-->
+<!--                        <field name="project_issue_count" widget="statinfo"/>-->
+<!--                    </button>-->
+<!--                    <button name="action_view_equipment_request"-->
+<!--                            type="object"-->
+<!--                            class="oe_stat_button"-->
+<!--                            icon="fa-list-ul">-->
+<!--                        <field name="equipment_request_count" widget="statinfo"/>-->
+<!--                    </button>-->
+<!--                    <button name="action_view_vehicle_request"-->
+<!--                            type="object"-->
+<!--                            class="oe_stat_button"-->
+<!--                            icon="fa-fw o_button_icon fa-truck">-->
+<!--                        <field name="vehicle_request_count" widget="statinfo"/>-->
+<!--                    </button>-->
                 </xpath>
             </field>
         </record>

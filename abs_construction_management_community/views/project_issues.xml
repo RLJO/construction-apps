@@ -100,11 +100,11 @@
     </record>
 
     <!--MENU [Project Issue]-->
-    <menuitem id="menu_sub_project_issue"
-        name = "Project Issues"
-        parent = "menu_projects"
-        action = "action_view_project_issue_menu"
-        sequence="3"
-        groups = "abs_construction_management_community.group_construction_user"/>
+<!--    <menuitem id="menu_sub_project_issue"-->
+<!--        name = "Project Issues"-->
+<!--        parent = "menu_projects"-->
+<!--        action = "action_view_project_issue_menu"-->
+<!--        sequence="3"-->
+<!--        groups = "abs_construction_management_community.group_construction_user"/>-->
 
 </odoo>

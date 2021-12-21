@@ -25,3 +25,4 @@ class ProductTemplate(models.Model):
 
     product_type_id = fields.Selection([('material','Material'),('labour','Labour'),('service','Service'),('equipment','Equipment'),('vehicle','Vehicle')],string = "Type Of Product")
     rent_per_hours = fields.Float(string = 'Rent')
+    is_project = fields.Boolean(string='Is Project',default=False)

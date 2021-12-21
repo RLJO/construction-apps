@@ -27,3 +27,6 @@ class AccountMove(models.Model):
     project_issue_id = fields.Many2one('project.issue', string = 'Project Issue')
     equipment_invoice_id = fields.Many2one('equipment.request', string = 'Equipment Request')
     vehicle_invoice_id = fields.Many2one('vehicle.request', string = 'Vehicle Request')
+    work_order_id = fields.Many2one('project.task', string='Work order')
+    product_type_id = fields.Selection([('material','Material'),('equipment','Equipment'),('service','Service'),('labour','Labour'),('vehicle','Vehicle')],string = "Request Type")
+

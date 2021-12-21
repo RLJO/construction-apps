@@ -106,17 +106,17 @@
     </record>
 
     <!--MENU [Equipments]-->
-    <menuitem id="menu_Equipments"
-        name = "Equipments"
-        parent = "construction_management"
-        groups = "abs_construction_management_community.group_construction_user"
-        sequence="4"/>
+<!--    <menuitem id="menu_Equipments"-->
+<!--        name = "Equipments"-->
+<!--        parent = "construction_management"-->
+<!--        groups = "abs_construction_management_community.group_construction_user"-->
+<!--        sequence="4"/>-->
 
-    <!--MENU [Equipment Request]-->
-    <menuitem id="menu_sub_equipment_request"
-        name = "Equipment Request"
-        parent = "menu_Equipments"
-        action = "action_view_equipment_menu"
-        sequence="1"/>
+<!--    &lt;!&ndash;MENU [Equipment Request]&ndash;&gt;-->
+<!--    <menuitem id="menu_sub_equipment_request"-->
+<!--        name = "Equipment Request"-->
+<!--        parent = "menu_Equipments"-->
+<!--        action = "action_view_equipment_menu"-->
+<!--        sequence="1"/>-->
 
 </odoo>

@@ -33,13 +33,17 @@
                             <field name="estimation_sheet_cost"/>
                         </group>
                         <group string = "Real Costing">
-                            <field name="project_issue_cost"/>
+                            <field name="material_cost"/>
                             <field name="equipment_cost"/>
+                            <field name="service_cost"/>
+                            <field name="labour_cost"/>
                             <field name="vehicle_cost"/>
-                            <field name="extra_material_cost"/>
+                            <field name="extra_material_cost" invisible="1"/>
+                            <field name="project_issue_cost" invisible="1"/>
                         </group>
                         <group string = "Total Costing">
                             <field name="total_amount"/>
+                            <field name="diff_total_amount"/>
                         </group>
                     </page>
                 </notebook>
@@ -79,5 +83,50 @@
         parent = "menu_projects"
         action = "action_view_project"
         sequence="1"/>
+
+
+    <!-- Purchase form View Inherited-->
+    <record id="purchase_order_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position='after'>
+                <field name="project_id" options="{'no_create': True, 'no_open': True}"
+                attrs="{'invisible':[('is_project','!=',True)],'required':[('is_project','=',True)]}"/>
+                <field name="work_order_id" domain="[('project_id','=', project_id)]" options="{'no_create': True, 'no_open': True}"
+                attrs="{'invisible':[('is_project','!=',True)],'required':[('is_project','=',True)]}"/>
+                <field name="product_type_id" attrs="{'invisible':[('is_project','!=',True)],'required':[('is_project','=',True)]}"/>
+                <field name="is_project" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_ref']" position='attributes'>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='currency_id']" position='attributes'>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="after">
+                <field name="product_type_id" invisible="1"/>
+                <field name="is_project" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="attributes">
+                <attribute name="domain">['|',('product_type_id', '=', product_type_id),('is_project', '=', is_project)]</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Invoice form View Inherited-->
+    <record id="account_move_inherit" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position='after'>
+                <field name="project_id" invisible="1"/>
+                <field name="work_order_id" invisible="1"/>
+                <field name="product_type_id" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
 
 </odoo>

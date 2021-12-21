@@ -109,10 +109,10 @@
     </record>
 
     <!--MENU [Vehicle Request]-->
-    <menuitem id="menu_sub_vehicle_request"
-        name = "Vehicle Request"
-        parent = "menu_Equipments"
-        action = "action_view_vehicle_menu"
-        sequence="1"/>
+<!--    <menuitem id="menu_sub_vehicle_request"-->
+<!--        name = "Vehicle Request"-->
+<!--        parent = "menu_Equipments"-->
+<!--        action = "action_view_vehicle_menu"-->
+<!--        sequence="1"/>-->
 
 </odoo>

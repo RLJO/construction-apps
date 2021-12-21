@@ -26,6 +26,10 @@ class ProjectProject(models.Model):
     cost_sheet_count = fields.Integer(string = 'Cost Sheet', compute = '_comute_cost_sheet')
     notes_count = fields.Integer(string = 'Notes', compute = '_comute_notes_count')
     estimation_sheet_cost = fields.Monetary(string = 'Estimation Cost', currency_field='currency_id', compute = 'compute_estimation_sheet_cost', store = True)
+
+    labour_cost = fields.Float(string = 'labour Cost', compute = 'compute_labour_cost', currency_field='currency_id', store = True)
+    service_cost = fields.Float(string = 'Service Cost', compute = 'compute_service_cost', currency_field='currency_id', store = True)
+    material_cost = fields.Float(string = 'Material Cost', compute = 'compute_material_cost', currency_field='currency_id', store = True)
     equipment_cost = fields.Float(string = 'Equipment Cost', compute = 'compute_equipment_cost', currency_field='currency_id', store = True)
     vehicle_cost = fields.Float(string = 'Vehicle Cost', compute = 'compute_vehicle_cost', currency_field='currency_id', store = True)
     project_issue_cost = fields.Float(string = 'Project Issue Cost', compute = 'compute_project_issue_cost', currency_field='currency_id', store = True)
@@ -35,23 +39,37 @@ class ProjectProject(models.Model):
 
     cost_sheet_ids = fields.One2many('job.cost.sheet','project_id', string = 'Cost Sheets')
     total_amount = fields.Monetary(string = 'Total Costing', currency_field='currency_id', compute = 'compute_total_amount', store = True)
+    diff_total_amount = fields.Monetary(string = 'Differance', currency_field='currency_id', compute = 'compute_total_amount', store = True)
 
-    @api.depends('invoice_ids.amount_total','cost_sheet_ids.amount_total','task_ids.extra_material_amount')
+    @api.depends('invoice_ids.amount_total','cost_sheet_ids.amount_total','task_ids.extra_material_amount','material_cost','invoice_count','equipment_cost','labour_cost','service_cost','vehicle_cost','estimation_sheet_cost')
     def compute_total_amount(self):
         for project in self:
             total = 0
-            estimation_cost = 0
-            total_cost = 0
-            if project.cost_sheet_ids:
-                for cost_sheet in project.cost_sheet_ids:
-                    estimation_cost += cost_sheet.amount_total
-            if project.invoice_ids:
-                for invoice in project.invoice_ids:
-                    total += invoice.amount_total
-            if project.task_ids:
-                for extra_cost in project.task_ids:
-                    total_cost += extra_cost.extra_material_amount
-            project.total_amount = total + estimation_cost + total_cost
+            if project.material_cost:
+                total += project.material_cost
+            if project.equipment_cost:
+                total += project.equipment_cost
+            if project.service_cost:
+                total += project.service_cost
+            if project.labour_cost:
+                total += project.labour_cost
+            if project.vehicle_cost:
+                total += project.vehicle_cost
+            print("==============total================",total)
+            print("==============project.material_cost================",project.material_cost)
+            print("==============project.equipment_cost================",project.equipment_cost)
+            project.total_amount = total
+            project.diff_total_amount = project.estimation_sheet_cost - total
+            # if project.cost_sheet_ids:
+            #     for cost_sheet in project.cost_sheet_ids:
+            #         estimation_cost += cost_sheet.amount_total
+            # if project.invoice_ids:
+            #     for invoice in project.invoice_ids:
+            #         total += invoice.amount_total
+            # if project.task_ids:
+            #     for extra_cost in project.task_ids:
+            #         total_cost += extra_cost.extra_material_amount
+            # project.total_amount = total + estimation_cost + total_cost
 
     def compute_invoices(self):
         account_invoice_obj = self.env['account.move']
@@ -70,35 +88,91 @@ class ProjectProject(models.Model):
                         total += cost_sheet.amount_total
                 project.estimation_sheet_cost = total
 
-    @api.depends('invoice_ids.amount_total')
+    @api.depends('invoice_ids.amount_total','invoice_count')
+    def compute_material_cost(self):
+        for project in self:
+            total = 0
+            account_invoice_obj = self.env['account.move'].search([('product_type_id', '=', 'material'),('project_id', '=', project.id),('payment_state', '=', 'paid')])
+            print("=====account_invoice_obj=========compute_material_cost=================",account_invoice_obj)
+            if account_invoice_obj:
+                for invoice in account_invoice_obj:
+                    if invoice:
+                        total += invoice.amount_total
+            project.material_cost = total
+
+    @api.depends('invoice_ids.amount_total', 'invoice_count')
+    def compute_service_cost(self):
+        for project in self:
+            total = 0
+            account_invoice_obj = self.env['account.move'].search(
+                [('product_type_id', '=', 'service'), ('project_id', '=', project.id),('payment_state', '=', 'paid')])
+            print("=====account_invoice_obj=========compute_material_cost=================", account_invoice_obj)
+            if account_invoice_obj:
+                for invoice in account_invoice_obj:
+                    if invoice:
+                        total += invoice.amount_total
+            project.service_cost = total
+
+    @api.depends('invoice_ids.amount_total', 'invoice_count')
+    def compute_labour_cost(self):
+        for project in self:
+            total = 0
+            account_invoice_obj = self.env['account.move'].search(
+                [('product_type_id', '=', 'labour'), ('project_id', '=', project.id),('payment_state', '=', 'paid')])
+            print("=====account_invoice_obj=========compute_labour_cost=================", account_invoice_obj)
+            if account_invoice_obj:
+                for invoice in account_invoice_obj:
+                    if invoice:
+                        total += invoice.amount_total
+            project.labour_cost = total
+
+    @api.depends('invoice_ids.amount_total','invoice_count')
     def compute_equipment_cost(self):
         for project in self:
-            equipment_request_obj = self.env['equipment.request'].search([('project_id','=',project.id)])
-            if equipment_request_obj:
-                total = 0
-                for equipment in equipment_request_obj:
-                    if equipment:
-                        account_invoice_obj = self.env['account.move'].search([('invoice_origin','=',equipment.name)])
-                        if account_invoice_obj:
-                            for invoice in account_invoice_obj:
-                                if invoice:
-                                    total += invoice.amount_total
-                project.equipment_cost = total
+            total = 0
+            account_invoice_obj = self.env['account.move'].search(
+                [('product_type_id', '=', 'equipment'), ('project_id', '=', project.id),('payment_state', '=', 'paid')])
+            print("=====account_invoice_obj=========compute_material_cost=================", account_invoice_obj)
+            if account_invoice_obj:
+                for invoice in account_invoice_obj:
+                    if invoice:
+                        total += invoice.amount_total
+            project.equipment_cost = total
+            # equipment_request_obj = self.env['equipment.request'].search([('project_id','=',project.id)])
+            # if equipment_request_obj:
+            #     total = 0
+            #     for equipment in equipment_request_obj:
+            #         if equipment:
+            #             account_invoice_obj = self.env['account.move'].search([('invoice_origin','=',equipment.name)])
+            #             if account_invoice_obj:
+            #                 for invoice in account_invoice_obj:
+            #                     if invoice:
+            #                         total += invoice.amount_total
+            #     project.equipment_cost = total
 
-    @api.depends('invoice_ids.amount_total')
+    @api.depends('invoice_ids.amount_total','invoice_count')
     def compute_vehicle_cost(self):
         for project in self:
-            vehicle_request_obj = self.env['vehicle.request'].search([('project_id','=',project.id)])
-            if vehicle_request_obj:
-                total = 0
-                for vehicle in vehicle_request_obj:
-                    if vehicle:
-                        account_invoice_obj = self.env['account.move'].search([('invoice_origin','=',vehicle.name)])
-                        if account_invoice_obj:
-                            for invoice in account_invoice_obj:
-                                if invoice:
-                                    total += invoice.amount_total
-                project.vehicle_cost = total
+            total = 0
+            account_invoice_obj = self.env['account.move'].search(
+                [('product_type_id', '=', 'vehicle'), ('project_id', '=', project.id),('payment_state', '=', 'paid')])
+            print("=====account_invoice_obj=========compute_labour_cost=================", account_invoice_obj)
+            if account_invoice_obj:
+                for invoice in account_invoice_obj:
+                    if invoice:
+                        total += invoice.amount_total
+            project.vehicle_cost = total
+            # vehicle_request_obj = self.env['vehicle.request'].search([('project_id','=',project.id)])
+            # if vehicle_request_obj:
+            #     total = 0
+            #     for vehicle in vehicle_request_obj:
+            #         if vehicle:
+            #             account_invoice_obj = self.env['account.move'].search([('invoice_origin','=',vehicle.name)])
+            #             if account_invoice_obj:
+            #                 for invoice in account_invoice_obj:
+            #                     if invoice:
+            #                         total += invoice.amount_total
+            #     project.vehicle_cost = total
 
     @api.depends('invoice_ids.amount_total')
     def compute_project_issue_cost(self):
@@ -177,6 +251,6 @@ class ProjectProject(models.Model):
                 'view_mode': 'tree,form',
                 'res_model': 'account.move',
                 'view_id': False,
-                'views': [(self.env.ref('account.invoice_supplier_tree').id, 'tree'),(self.env.ref('account.invoice_supplier_form').id, 'form')],
+                'views': [(self.env.ref('account.view_in_invoice_tree').id, 'tree'),(self.env.ref('account.view_move_form').id, 'form')],
                 'type': 'ir.actions.act_window'
                }

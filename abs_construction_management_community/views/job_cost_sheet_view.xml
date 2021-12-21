@@ -58,16 +58,16 @@
             </div>
             <group>
                 <group>
-                    <field name="cost_sheet_name"/>
-                    <field name="supplier_id" />
+                    <field name="cost_sheet_name" invisible="1"/>
                     <field name="project_id" required = 'True'/>
-                    <field name="company_id"/>
+                    <field name="supplier_id" />
+                    <field name="company_id" invisible = '1'/>
                     <field name="purchase_exempt" invisible = '1'/>
                 </group>
                 <group>
-                    <field name="create_date"/>
-                    <field name="close_date"/>
+                    <field name="close_date" invisible = '1'/>
                     <field name="user_id"/>
+                    <field name="create_date"/>
                 </group>
             </group>
 <!--            <group string = 'Extra Information'>-->
@@ -77,8 +77,8 @@
                 <page string = "Material Estimation">
                     <field name ="material_ids" nolabel = "1">
                         <tree editable = "bottom">
-                            <field name = "phase"/>
-                            <field name = "task"/>
+                            <field name = "phase" required="1"/>
+                            <field name = "task" required="1"/>
                             <field name = "product_id" required = 'True' domain="[('product_type_id','=','material')]"/>
                             <field name = "description"/>
                             <field name = "product_qty"/>
@@ -102,8 +102,8 @@
                 <page string = "Equipment Estimation">
                     <field name ="material_equipment_ids" nolabel = "1">
                         <tree editable = "bottom">
-                            <field name = "phase"/>
-                            <field name = "task"/>
+                            <field name = "phase" required="1"/>
+                            <field name = "task" required="1"/>
                             <field name = "product_id" required = 'True' domain="[('product_type_id','=','equipment')]"/>
                             <field name = "description"/>
                             <field name = "product_qty"/>
@@ -119,8 +119,8 @@
                 <page string = "Service Estimation">
                     <field name ="material_overhead_ids" nolabel = "1">
                         <tree editable = "bottom">
-                            <field name = "phase"/>
-                            <field name = "task"/>
+                            <field name = "phase" required="1"/>
+                            <field name = "task" required="1"/>
                             <field name = "product_id" required = 'True' domain="[('product_type_id','=','service')]"/>
                             <field name = "description"/>
                             <field name = "product_qty"/>
@@ -136,8 +136,8 @@
                 <page string = "Labour Estimation">
                     <field name ="material_labour_ids" nolabel = "1">
                         <tree editable = "bottom">
-                            <field name = "phase"/>
-                            <field name = "task"/>
+                            <field name = "phase" required="1"/>
+                            <field name = "task" required="1"/>
                             <field name = "product_id" required = 'True' domain="[('product_type_id','=','labour')]"/>
                             <field name = "description"/>
                             <field name = "product_qty"/>
@@ -153,8 +153,8 @@
                 <page string = "Vehicle Estimation">
                     <field name ="material_vehicle_ids" nolabel = "1">
                         <tree editable = "bottom">
-                            <field name = "phase"/>
-                            <field name = "task"/>
+                            <field name = "phase" required="1"/>
+                            <field name = "task" required="1"/>
                             <field name = "product_id" required = 'True' domain="[('product_type_id','=','vehicle')]"/>
                             <field name = "description"/>
                             <field name = "product_qty"/>
@@ -217,7 +217,7 @@
 
     <!--ACTION [job.cost.sheet]-->
     <record id="action_view_job_cost_sheet_menu" model="ir.actions.act_window">
-        <field name="name">Cost Sheet</field>
+        <field name="name">Estimate Cost Sheet</field>
         <field name="res_model">job.cost.sheet</field>
         <field name="view_mode">tree,form,pivot,graph</field>
         <field name="view_id" ref="view_job_cost_sheet_menu_tree" />
@@ -240,11 +240,11 @@
         groups = "abs_construction_management_community.group_construction_user"/>
 
     <record id="action_view_purchase_order_menu" model="ir.actions.act_window">
-        <field name="name">Purchase Order</field>
+        <field name="name">Real Cost Sheet</field>
         <field name="res_model">purchase.order</field>
         <field name="view_mode">tree,kanban,form</field>
-        <field name="domain">[]</field>
-        <field name="context">{'form_view_ref': 'purchase.purchase_order_form'}
+        <field name="domain">[('project_id','!=',False)]</field>
+        <field name="context">{'form_view_ref': 'purchase.purchase_order_form','group_by': 'project_id','default_is_project':True}
         </field>
         <field name="view_id" ref="purchase.purchase_order_kpis_tree"/>
     </record>

@@ -30,7 +30,7 @@ class WorkOrderPurchaseOrder(models.TransientModel):
     work_order_id = fields.Many2one('project.task', string = 'Work Order', readonly = True)
     supplier_id = fields.Many2one('res.partner', string = 'Supplier')
     material_ids = fields.One2many('workorder.material','ref_work_order_id', string = 'Materials')
-    product_type_id = fields.Selection([('material','Material'),('labour','Labour'),('service','Service'),('equipment','Equipment'),('vehicle','Vehicle')],string = "Type Of Product")
+    product_type_id = fields.Selection([('material','Material'),('equipment','Equipment'),('service','Service'),('labour','Labour'),('vehicle','Vehicle')],string = "Request Type")
 
     @api.onchange('product_type_id')
     def onchange_product_type_id(self):
@@ -58,6 +58,9 @@ class WorkOrderPurchaseOrder(models.TransientModel):
 
             new_purchase_order_id = purchase_order_obj.create({ 'partner_id' : self.supplier_id.id,
                                                                 'work_order_id' : work_order_id.id,
+                                                                'project_id' : work_order_id.project_id.id,
+                                                                'product_type_id' : self.product_type_id,
+                                                                'is_project' : True,
                                                              })
 
             if self.material_ids:

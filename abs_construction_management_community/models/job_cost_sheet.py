@@ -27,11 +27,11 @@ class JobCostSheet(models.Model):
     _description = "Job Cost Sheet"
 
     name = fields.Char("Sheet Number")
-    cost_sheet_name = fields.Char(string = 'Name',required = True)
+    cost_sheet_name = fields.Char(string = 'Name',required = False)
     project_id = fields.Many2one('project.project', string = 'Project')
     supplier_id = fields.Many2one('res.partner', string = 'Customer', required = True)
     close_date = fields.Datetime(string = 'Close Date', readonly = True)
-    user_id = fields.Many2one('res.users', string = 'Created By')
+    user_id = fields.Many2one('res.users', string = 'Created By',default=lambda self: self.env.user.id)
     company_id = fields.Many2one('res.company', string='Company', index=True, default=lambda self: self.env.user.company_id.id)
     currency_id = fields.Many2one('res.currency', compute='_compute_currency', oldname='currency', string="Currency")
     purchase_exempt = fields.Boolean(string = 'Purchase Exempt', copy=False)
@@ -49,11 +49,17 @@ class JobCostSheet(models.Model):
     amount_vehicle = fields.Monetary(string='Vehicle Cost', readonly=True, compute = '_amount_vehicle')
     amount_equipment = fields.Monetary(string='Equipment Cost', readonly=True, compute = '_amount_equipment')
 
-    amount_total = fields.Monetary(string='Total Cost', readonly=True, compute = '_amount_total', store = True)
+    amount_total = fields.Monetary(string='Total Estimation Cost', readonly=True, compute = '_amount_total', store = True)
     state = fields.Selection([('draft','Draft'),('approved','Approved'),('purchase','Purchase Order'),('done','Done')],string = "State", readonly=True, default='draft')
 
     purchase_order_ids = fields.One2many('purchase.order','job_cost_sheet_id', string = 'Purchase Orders')
     purchase_order_count = fields.Integer(string = 'Purchases', compute = '_purchase_order_count')
+
+    @api.onchange('project_id')
+    def onchange_project_id(self):
+        for record in self:
+            if record.project_id and record.project_id.partner_id:
+                record.update({'supplier_id': record.project_id.partner_id.id})
 
     def action_view_purchase_order(self):
         return {
@@ -211,7 +217,7 @@ class MaterialMaterial(models.Model):
     task = fields.Char(string='Task')
     product_id = fields.Many2one('product.product', string='Product')
     description = fields.Char(string='Description')
-    product_qty = fields.Float(string='Vehicle Quantity', default='1.00')
+    product_qty = fields.Float(string='Quantity', default='1.00')
     price_unit = fields.Float(string='Unit Price', default='0.00')
     tax_id = fields.Many2one('account.tax', string="Taxes")
     material_amount_total = fields.Float(string = 'Subtotal', compute = 'compute_material_amount_total')
@@ -239,7 +245,7 @@ class MaterialLabour(models.Model):
     task = fields.Char(string='Task')
     product_id = fields.Many2one('product.product', string='Product')
     description = fields.Char(string='Description')
-    product_qty = fields.Float(string='Vehicle Quantity', default='1.00')
+    product_qty = fields.Float(string='Quantity', default='1.00')
     price_unit = fields.Float(string='Unit Price', default='0.00')
     tax_id = fields.Many2one('account.tax', string="Taxes")
     labour_amount_total = fields.Float(string = 'Subtotal', compute = 'compute_labour_amount_total')
@@ -267,7 +273,7 @@ class MaterialOverhead(models.Model):
     task = fields.Char(string='Task')
     product_id = fields.Many2one('product.product', string='Product')
     description = fields.Char(string='Description')
-    product_qty = fields.Float(string='Vehicle Quantity', default='1.00')
+    product_qty = fields.Float(string='Quantity', default='1.00')
     price_unit = fields.Float(string='Unit Price', default='0.00')
     tax_id = fields.Many2one('account.tax', string="Taxes")
     overhead_amount_total = fields.Float(string = 'Subtotal', compute = 'compute_overhead_amount_total')
@@ -295,7 +301,7 @@ class MaterialVehicle(models.Model):
     task = fields.Char(string='Task')
     product_id = fields.Many2one('product.product', string = 'Product')
     description = fields.Char(string = 'Description')
-    product_qty = fields.Float(string = 'Vehicle Quantity', default = '1.00')
+    product_qty = fields.Float(string = 'Quantity', default = '1.00')
     price_unit = fields.Float(string = 'Unit Price', default = '0.00')
     tax_id = fields.Many2one('account.tax', string="Taxes")
     vehicle_amount_total = fields.Float(string = 'Subtotal', compute = 'compute_vehicle_amount_total')
@@ -323,7 +329,7 @@ class MaterialEquipment(models.Model):
     task = fields.Char(string='Task')
     product_id = fields.Many2one('product.product', string = 'Product')
     description = fields.Char(string = 'Description')
-    product_qty = fields.Float(string = 'Equipment Quantity', default = '1.00')
+    product_qty = fields.Float(string = 'Quantity', default = '1.00')
     price_unit = fields.Float(string = 'Unit Price', default = '0.00')
     tax_id = fields.Many2one('account.tax', string="Taxes")
     equipment_amount_total = fields.Float(string = 'Subtotal', compute = 'compute_equipment_amount_total')
@@ -347,3 +353,22 @@ class PurchaseOrder(models.Model):
 
     job_cost_sheet_id = fields.Many2one('job.cost.sheet', string = 'Job Cost Sheet')
     work_order_id = fields.Many2one('project.task', string = 'Work order')
+    project_id = fields.Many2one('project.project', string = 'Project')
+    is_project = fields.Boolean(string = 'Is Project')
+    product_type_id = fields.Selection([('material','Material'),('labour','Labour'),('service','Service'),('equipment','Equipment'),('vehicle','Vehicle')],string = "Request Type")
+
+    def _prepare_invoice(self):
+        res = super(PurchaseOrder, self)._prepare_invoice()
+        if self.project_id:
+            res['project_id'] = self.project_id.id
+        if self.work_order_id:
+            res['work_order_id'] = self.work_order_id.id
+        if self.product_type_id:
+            res['product_type_id'] = self.product_type_id
+        return res
+
+class PurchaseOrderLine(models.Model):
+    _inherit = 'purchase.order.line'
+
+    product_type_id = fields.Selection([('material','Material'),('labour','Labour'),('service','Service'),('equipment','Equipment'),('vehicle','Vehicle')],string = "Request Type",related='order_id.product_type_id')
+    is_project = fields.Boolean(string='Is Project',related='order_id.is_project')
