@@ -67,5 +67,6 @@ access_workorder_material,access_workorder_material,model_workorder_material,bas
 
 access_material_vehicle,access_material_vehicle,model_material_vehicle,,1,1,1,1
 access_material_equipment,access_material_equipment,model_material_equipment,,1,1,1,1
+access_material_subcontract,access_material_subcontract,model_material_subcontract,,1,1,1,1
 
 

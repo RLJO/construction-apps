@@ -26,7 +26,7 @@
     'website': 'http://www.asceticbs.com',
     'description': """ """,
     'version': '1.0',
-    'depends': ['base','purchase','hr_timesheet_attendance'],
+    'depends': ['base','purchase','hr_timesheet_attendance', 'contract', 'account'],
     'data': [
              'security/construction_security.xml',
              'security/ir.model.access.csv',

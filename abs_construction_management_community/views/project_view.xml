@@ -26,6 +26,24 @@
                             icon="fa-list-ul">
                         <field name="invoice_count" widget="statinfo"/>
                     </button>
+                    <button name="action_view_sub_contract"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list-alt" attrs="{'invisible': [('sub_contract_count', '=', 0)]}">
+                        <field name="sub_contract_count" widget="statinfo"/>
+                    </button>
+                    <button name="action_view_customer_contract"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list-alt" attrs="{'invisible': [('customer_contract_count', '=', 0)]}">
+                        <field name="customer_contract_count" widget="statinfo"/>
+                    </button>
+                    <button name="action_view_customer_payment"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list-alt" attrs="{'invisible': [('customer_payment_count', '=', 0)]}">
+                        <field name="customer_payment_count" widget="statinfo"/>
+                    </button>
                 </xpath>
                 <notebook>
                     <page name="costing" string="Costing">

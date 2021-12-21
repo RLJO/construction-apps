@@ -42,18 +42,22 @@ class JobCostSheet(models.Model):
     material_overhead_ids = fields.One2many('material.overhead','job_sheet_id', string = 'Service')
     material_vehicle_ids = fields.One2many('material.vehicle', 'job_sheet_id', string='Vehicle')
     material_equipment_ids = fields.One2many('material.equipment', 'job_sheet_id', string='Equipment')
+    material_subcontract_ids = fields.One2many('material.subcontract', 'job_sheet_id', string='Subcontract')
 
     amount_material = fields.Monetary(string='Material Cost', readonly=True, compute = '_amount_material')
     amount_labour = fields.Monetary(string='Labour Cost', readonly=True, compute = '_amount_labour')
     amount_overhead = fields.Monetary(string='Service Cost', readonly=True, compute = '_amount_overhead')
     amount_vehicle = fields.Monetary(string='Vehicle Cost', readonly=True, compute = '_amount_vehicle')
     amount_equipment = fields.Monetary(string='Equipment Cost', readonly=True, compute = '_amount_equipment')
+    amount_subcontract = fields.Monetary(string='SubContract Cost', readonly=True, compute = '_amount_subcontract')
 
     amount_total = fields.Monetary(string='Total Estimation Cost', readonly=True, compute = '_amount_total', store = True)
     state = fields.Selection([('draft','Draft'),('approved','Approved'),('purchase','Purchase Order'),('done','Done')],string = "State", readonly=True, default='draft')
 
     purchase_order_ids = fields.One2many('purchase.order','job_cost_sheet_id', string = 'Purchase Orders')
     purchase_order_count = fields.Integer(string = 'Purchases', compute = '_purchase_order_count')
+
+    bulk_cost = fields.Float("Bulk Cost")
 
     @api.onchange('project_id')
     def onchange_project_id(self):
@@ -188,14 +192,24 @@ class JobCostSheet(models.Model):
                 amount_equipment += line.equipment_amount_total
             sheet.update({'amount_equipment': round(amount_equipment)})
 
-    @api.depends('material_ids.material_amount_total','material_labour_ids.labour_amount_total','material_overhead_ids.overhead_amount_total','material_vehicle_ids.vehicle_amount_total','material_equipment_ids.equipment_amount_total')
+    @api.depends('material_subcontract_ids.subcontract_amount_total')
+    def _amount_subcontract(self):
+        for sheet in self:
+            amount_subcontract = 0.0
+            for line in sheet.material_subcontract_ids:
+                amount_subcontract += line.subcontract_amount_total
+            sheet.update({'amount_subcontract': round(amount_subcontract)})
+
+    @api.depends('material_ids.material_amount_total','material_labour_ids.labour_amount_total','material_overhead_ids.overhead_amount_total','material_vehicle_ids.vehicle_amount_total','material_equipment_ids.equipment_amount_total', 'material_subcontract_ids.subcontract_amount_total', 'bulk_cost')
     def _amount_total(self):
         for cost_sheet in self:
             amount_material = 0.0
             amount_labour = 0.0
             amount_overhead = 0.0
+            amount_overhead = 0.0
             amount_vehicle = 0.0
             amount_equipment = 0.0
+            amount_subcontract = 0.0
             for line in cost_sheet.material_ids:
                 amount_material += line.material_amount_total
             for line in cost_sheet.material_labour_ids:
@@ -206,7 +220,9 @@ class JobCostSheet(models.Model):
                 amount_vehicle += line.vehicle_amount_total
             for line in cost_sheet.material_equipment_ids:
                 amount_equipment += line.equipment_amount_total
-            cost_sheet.amount_total = (amount_material + amount_labour + amount_overhead + amount_equipment + amount_equipment)
+            for line in cost_sheet.material_subcontract_ids:
+                amount_subcontract += line.subcontract_amount_total
+            cost_sheet.amount_total = (amount_material + amount_labour + amount_overhead + amount_equipment + amount_vehicle + amount_subcontract + cost_sheet.bulk_cost)
 
 class MaterialMaterial(models.Model):
     _name = 'material.material'
@@ -348,6 +364,18 @@ class MaterialEquipment(models.Model):
                 tax = (line.product_qty * line.price_unit) * line.tax_id.amount * 0.01
             line.update({'equipment_amount_total': (line.product_qty * line.price_unit) + tax})
 
+
+class SubContractEquipment(models.Model):
+    _name = 'material.subcontract'
+    _description = "SubContract"
+
+    job_sheet_id = fields.Many2one('job.cost.sheet', string = 'Job Sheet')
+    phase = fields.Char(string='Phase')
+    task = fields.Char(string='Task')
+    description = fields.Char(string = 'Description')
+    subcontract_amount_total = fields.Float(string = 'Cost')
+
+
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
@@ -372,3 +400,17 @@ class PurchaseOrderLine(models.Model):
 
     product_type_id = fields.Selection([('material','Material'),('labour','Labour'),('service','Service'),('equipment','Equipment'),('vehicle','Vehicle')],string = "Request Type",related='order_id.product_type_id')
     is_project = fields.Boolean(string='Is Project',related='order_id.is_project')
+
+class contractContract(models.Model):
+    _inherit = 'contract.contract'
+
+    is_sub_contract = fields.Boolean(string='Is Sub Contract')
+    is_customer_contract = fields.Boolean(string='Is Customer Contract')
+    work_order_id = fields.Many2one('project.task', string='Work order')
+    project_id = fields.Many2one('project.project', string='Project')
+
+class CustomerPayment(models.Model):
+    _inherit = 'account.payment'
+
+    is_customer_payment = fields.Boolean(string='Is Customer Payment')
+    project_id = fields.Many2one('project.project', string='Project')

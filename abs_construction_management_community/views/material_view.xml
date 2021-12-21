@@ -7,13 +7,14 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
-        <xpath expr="//field[@name='taxes_id']" position="after">
-            <field name="product_type_id" required = '1'/>
-            <label for="rent_per_hours" attrs = "{'invisible':[('product_type_id','!=','vehicle')]}"/>
-            <div class="o_row" attrs = "{'invisible':[('product_type_id','!=','vehicle')]}">
-                <field name="rent_per_hours"/><span>per hour</span>
-            </div>
-        </xpath>
+            <xpath expr="//field[@name='taxes_id']" position="after">
+                <field name="product_type_id" required='1'/>
+                <label for="rent_per_hours" attrs="{'invisible':[('product_type_id','!=','vehicle')]}"/>
+                <div class="o_row" attrs="{'invisible':[('product_type_id','!=','vehicle')]}">
+                    <field name="rent_per_hours"/>
+                    <span>per hour</span>
+                </div>
+            </xpath>
         </field>
     </record>
 
@@ -23,13 +24,14 @@
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view"/>
         <field name="arch" type="xml">
-        <xpath expr="//field[@name='taxes_id']" position="after">
-            <field name="product_type_id" required = '1'/>
-            <label for="rent_per_hours" attrs = "{'invisible':[('product_type_id','!=','vehicle')]}"/>
-            <div class="o_row" attrs = "{'invisible':[('product_type_id','!=','vehicle')]}">
-                <field name="rent_per_hours"/><span>per hour</span>
-            </div>
-        </xpath>
+            <xpath expr="//field[@name='taxes_id']" position="after">
+                <field name="product_type_id" required='1'/>
+                <label for="rent_per_hours" attrs="{'invisible':[('product_type_id','!=','vehicle')]}"/>
+                <div class="o_row" attrs="{'invisible':[('product_type_id','!=','vehicle')]}">
+                    <field name="rent_per_hours"/>
+                    <span>per hour</span>
+                </div>
+            </xpath>
         </field>
     </record>
 
@@ -48,6 +50,7 @@
             </p>
         </field>
     </record>
+
 
     <!--ACTION (Equipments) [product.template]-->
     <record id="action_view_equipment" model="ir.actions.act_window">
@@ -113,44 +116,120 @@
         </field>
     </record>
 
+    <!-- Sub Contract Form View Inherit -->
+    <record id="res_company_form_view_inherit" model="ir.ui.view">
+        <field name="name">contract.contract.form.view.inherit</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_supplier_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="is_sub_contract" invisible="1"/>
+                <field name="project_id" options="{'no_create': True, 'no_open': True}"
+                       attrs="{'invisible':[('is_sub_contract','!=',True)],'required':[('is_sub_contract','=',True)]}"/>
+                <field name="work_order_id" domain="[('project_id','=', project_id)]"
+                       options="{'no_create': True, 'no_open': True}"
+                       attrs="{'invisible':[('is_sub_contract','!=',True)],'required':[('is_sub_contract','=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--ACTION (Sub Contract) [contract.contract]-->
+    <record id="action_sub_contract" model="ir.actions.act_window">
+        <field name="name">Sub Contract Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">contract.contract</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_id" ref=""/>
+        <field name="domain">[('contract_type', '=', 'purchase'), ('is_sub_contract', '=', True)]</field>
+        <field name="context">{'default_is_sub_contract' : True, 'default_contract_type' : 'purchase', 'form_view_ref':
+            'contract.contract_contract_supplier_form_view'}
+        </field>
+        <field name="view_id" ref="contract.contract_contract_tree_view"/>
+    </record>
+
+    <!--Customer Contract Form View Inherit -->
+    <record id="customer_contract_form_view_inherit" model="ir.ui.view">
+        <field name="name">contract.contract.form.view.inherit</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_customer_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="is_customer_contract" invisible="1"/>
+                <field name="project_id" options="{'no_create': True, 'no_open': True}"
+                       attrs="{'invisible':[('is_customer_contract','!=',True)],'required':[('is_customer_contract','=',True)]}"/>
+                <field name="work_order_id" domain="[('project_id','=', project_id)]"
+                       options="{'no_create': True, 'no_open': True}"
+                       attrs="{'invisible':[('is_customer_contract','!=',True)],'required':[('is_customer_contract','=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--ACTION (Customer Contract) [contract.contract]-->
+    <record id="action_customer_contract" model="ir.actions.act_window">
+        <field name="name">Customer Contract</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">contract.contract</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_id" ref=""/>
+        <field name="domain">[('contract_type', '=', 'sale'), ('is_customer_contract', '=', True)]</field>
+        <field name="context">{'default_is_customer_contract' : True, 'default_contract_type' : 'sale', 'form_view_ref':
+            'contract.contract_contract_customer_form_view'}
+        </field>
+        <field name="view_id" ref="contract.contract_contract_tree_view"/>
+    </record>
+
     <!--MENU [Materials]-->
     <menuitem id="menu_materials"
-        name = "Type Request"
-        parent = "construction_management"
-        groups = "abs_construction_management_community.group_construction_user"
-        sequence="6"/>
+              name="Type Request"
+              parent="construction_management"
+              groups="abs_construction_management_community.group_construction_user"
+              sequence="6"/>
 
     <!--MENU [Materials]-->
     <menuitem id="menu_sub_materials"
-        name = "Materials"
-        parent = "menu_materials"
-        action = "action_view_material"
-        sequence="1"/>
+              name="Materials"
+              parent="menu_materials"
+              action="action_view_material"
+              sequence="1"/>
 
     <!--MENU [Equipments]-->
     <menuitem id="menu_sub_equipments"
-        name = "Equipments"
-        parent = "menu_materials"
-        action = "action_view_equipment"
-        sequence="2"/>
+              name="Equipments"
+              parent="menu_materials"
+              action="action_view_equipment"
+              sequence="2"/>
 
     <!--MENU [Vehicles]-->
     <menuitem id="menu_sub_vehicles"
-        name = "Vehicles"
-        parent = "menu_materials"
-        action = "action_view_vehicles"
-        sequence="5"/>
+              name="Vehicles"
+              parent="menu_materials"
+              action="action_view_vehicles"
+              sequence="5"/>
 
     <menuitem id="menu_sub_service"
-        name = "Service"
-        parent = "menu_materials"
-        action = "action_view_service"
-        sequence="3"/>
+              name="Service"
+              parent="menu_materials"
+              action="action_view_service"
+              sequence="3"/>
 
     <menuitem id="menu_sub_labour"
-        name = "Labour"
-        parent = "menu_materials"
-        action = "action_view_labour"
-        sequence="4"/>
+              name="Labour"
+              parent="menu_materials"
+              action="action_view_labour"
+              sequence="4"/>
+
+    <menuitem id="menu_sub_contract"
+              name="Sub Contract Request"
+              parent="menu_materials"
+              action="action_sub_contract"
+              sequence="5"/>
+
+    <!--MENU [Customer Contract]-->
+    <menuitem id="menu_customer_contract"
+              name="Customer Contract"
+              parent="menu_job_costs"
+              sequence="3"
+              action="action_customer_contract"
+              groups="abs_construction_management_community.group_construction_user"/>
 
 </odoo>

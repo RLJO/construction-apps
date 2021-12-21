@@ -36,6 +36,9 @@ class ProjectProject(models.Model):
     extra_material_cost = fields.Float(string="Material Cost", compute="compute_extra_material_cost", currency_field='currency_id')
     invoice_ids = fields.One2many('account.move','project_id', string = 'Project Invoices')
     invoice_count = fields.Integer(string = 'Bills', compute = 'compute_invoices')
+    sub_contract_count = fields.Integer(string = 'Sub Contract', compute = 'compute_sub_contract')
+    customer_contract_count = fields.Integer(string = 'Customer Contract', compute = 'compute_customer_contract')
+    customer_payment_count = fields.Integer(string = 'Customer Payment', compute = 'compute_customer_payment')
 
     cost_sheet_ids = fields.One2many('job.cost.sheet','project_id', string = 'Cost Sheets')
     total_amount = fields.Monetary(string = 'Total Costing', currency_field='currency_id', compute = 'compute_total_amount', store = True)
@@ -87,6 +90,25 @@ class ProjectProject(models.Model):
                     if cost_sheet:
                         total += cost_sheet.amount_total
                 project.estimation_sheet_cost = total
+
+    def compute_sub_contract(self):
+        sub_contract_obj = self.env['contract.contract']
+        for contract in self:
+            if contract:
+                contract.sub_contract_count = sub_contract_obj.search_count([('project_id', '=', contract.id), ('is_sub_contract','=',True)])
+
+    def compute_customer_contract(self):
+        customer_contract_obj = self.env['contract.contract']
+        for contract in self:
+            if contract:
+                contract.customer_contract_count = customer_contract_obj.search_count([('project_id', '=', contract.id), ('is_customer_contract','=',True)])
+
+    def compute_customer_payment(self):
+        customer_payment_obj = self.env['account.payment']
+        for payment in self:
+            if payment:
+                payment.customer_payment_count = customer_payment_obj.search_count([('project_id', '=', payment.id), ('is_customer_payment','=',True)])
+
 
     @api.depends('invoice_ids.amount_total','invoice_count')
     def compute_material_cost(self):
@@ -252,5 +274,41 @@ class ProjectProject(models.Model):
                 'res_model': 'account.move',
                 'view_id': False,
                 'views': [(self.env.ref('account.view_in_invoice_tree').id, 'tree'),(self.env.ref('account.view_move_form').id, 'form')],
+                'type': 'ir.actions.act_window'
+               }
+
+    def action_view_sub_contract(self):
+        return {
+                'name': _('Sub Contract'),
+                'domain': [('project_id','=',self.id), ('is_sub_contract','=',True)],
+                'view_type': 'form',
+                'view_mode': 'tree,form',
+                'res_model': 'contract.contract',
+                'view_id': False,
+                'views': [(self.env.ref('contract.contract_contract_tree_view').id, 'tree'),(self.env.ref('contract.contract_contract_supplier_form_view').id, 'form')],
+                'type': 'ir.actions.act_window'
+               }
+
+    def action_view_customer_contract(self):
+        return {
+                'name': _('Customer Contract'),
+                'domain': [('project_id','=',self.id), ('is_customer_contract','=',True)],
+                'view_type': 'form',
+                'view_mode': 'tree,form',
+                'res_model': 'contract.contract',
+                'view_id': False,
+                'views': [(self.env.ref('contract.contract_contract_tree_view').id, 'tree'),(self.env.ref('contract.contract_contract_customer_form_view').id, 'form')],
+                'type': 'ir.actions.act_window'
+               }
+
+    def action_view_customer_payment(self):
+        return {
+                'name': _('Customer Payment'),
+                'domain': [('project_id','=',self.id), ('is_customer_payment','=',True)],
+                'view_type': 'form',
+                'view_mode': 'tree,form',
+                'res_model': 'account.payment',
+                'view_id': False,
+                'views': [(self.env.ref('account.view_account_payment_tree').id, 'tree'),(self.env.ref('account.view_account_payment_form').id, 'form')],
                 'type': 'ir.actions.act_window'
                }
