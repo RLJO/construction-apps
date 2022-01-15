@@ -19,7 +19,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="cost_sheet_name"/>
+                <field name="cost_sheet_name" invisible="1"/>
                 <field name="project_id"/>
                 <field name="supplier_id"/>
                 <field name="create_date"/>
@@ -78,6 +78,10 @@
                             <group>
                                 <group>
                                     <field name="bulk_cost"/>
+                                    <field name="bulk_tax_id"/>
+                                </group>
+                                <group>
+
                                 </group>
                             </group>
                         </page>
@@ -88,7 +92,7 @@
                                     <field name="task" required="1"/>
                                     <field name="product_id" required='True'
                                            domain="[('product_type_id','=','material')]"/>
-                                    <field name="description"/>
+                                    <field name="description" invisible="1"/>
                                     <field name="product_qty"/>
                                     <field name="price_unit"/>
                                     <field name="tax_id"/>
@@ -107,7 +111,7 @@
                                     <field name="task" required="1"/>
                                     <field name="product_id" required='True'
                                            domain="[('product_type_id','=','equipment')]"/>
-                                    <field name="description"/>
+                                    <field name="description" invisible="1"/>
                                     <field name="product_qty"/>
                                     <field name="price_unit"/>
                                     <field name="tax_id"/>
@@ -126,7 +130,7 @@
                                     <field name="task" required="1"/>
                                     <field name="product_id" required='True'
                                            domain="[('product_type_id','=','service')]"/>
-                                    <field name="description"/>
+                                    <field name="description" invisible="1"/>
                                     <field name="product_qty"/>
                                     <field name="price_unit"/>
                                     <field name="tax_id"/>
@@ -145,7 +149,7 @@
                                     <field name="task" required="1"/>
                                     <field name="product_id" required='True'
                                            domain="[('product_type_id','=','labour')]"/>
-                                    <field name="description"/>
+                                    <field name="description" invisible="1"/>
                                     <field name="product_qty"/>
                                     <field name="price_unit"/>
                                     <field name="tax_id"/>
@@ -164,7 +168,7 @@
                                     <field name="task" required="1"/>
                                     <field name="product_id" required='True'
                                            domain="[('product_type_id','=','vehicle')]"/>
-                                    <field name="description"/>
+                                    <field name="description" invisible="1"/>
                                     <field name="product_qty"/>
                                     <field name="price_unit"/>
                                     <field name="tax_id"/>
@@ -176,12 +180,28 @@
                                        options="{'currency_field': 'currency_id'}"/>
                             </group>
                         </page>
-                        <page string="SubContract Estimation">
-                            <field name="material_subcontract_ids" nolabel="1">
+                        <page string="Sub Contract Estimation">
+                            <group>
+                                <group>
+                                    <field name="sub_contract_type"/>
+                                </group>
+                                <group></group>
+                            </group>
+                            <group attrs="{'invisible':[('sub_contract_type','!=','bulk')]}">
+                                <group>
+                                    <field name="sub_bulk_cost"/>
+                                    <field name="sub_bulk_tax_id"/>
+                                </group>
+                                <group></group>
+                            </group>
+                            <field name="material_subcontract_ids" nolabel="1" attrs="{'invisible':[('sub_contract_type','!=','phase')]}">
                                 <tree editable="bottom">
                                     <field name="phase" required="1"/>
                                     <field name="task" required="1"/>
                                     <field name="description"/>
+                                    <field name="product_qty"/>
+                                    <field name="price_unit"/>
+                                    <field name="tax_id"/>
                                     <field name="subcontract_amount_total"/>
                                 </tree>
                             </field>
@@ -192,7 +212,7 @@
                         </page>
                         <page string="Summary">
                             <group>
-                                <field name="bulk_cost" widget='monetary' readonly="1"
+                                <field name="amount_bulk_cost" widget='monetary' readonly="1"
                                        options="{'currency_field': 'currency_id'}"/>
                                 <field name="amount_material" widget='monetary'
                                        options="{'currency_field': 'currency_id'}"/>
@@ -288,7 +308,7 @@
               groups="abs_construction_management_community.group_construction_user"/>
 
     <record id="action_view_purchase_order_menu" model="ir.actions.act_window">
-        <field name="name">Real Cost Sheet</field>
+        <field name="name">Purchase Order Request</field>
         <field name="res_model">purchase.order</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="domain">[('project_id','!=',False)]</field>
@@ -300,25 +320,25 @@
 
     <!--MENU [Real Cost Sheet]-->
     <menuitem id="menu_job_real_costs"
-              name="Real Cost Sheet"
+              name="Purchase Order Request"
               parent="menu_job_costs"
               sequence="2"
               action="action_view_purchase_order_menu"
               groups="abs_construction_management_community.group_construction_user"/>
 
-    <!--Customer Payment Form View Inherit -->
-    <record id="customer_payment_form_view_inherit" model="ir.ui.view">
-        <field name="name">account.payment.form.view.inherit</field>
-        <field name="model">account.payment</field>
-        <field name="inherit_id" ref="account.view_account_payment_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="is_customer_payment" invisible="1"/>
-                <field name="project_id" options="{'no_create': True, 'no_open': True}"
-                       attrs="{'invisible':[('is_customer_payment','!=',True)],'required':[('is_customer_payment','=',True)]}"/>
-            </xpath>
-        </field>
+    <!--ACTION (Customer Bill) [account.move]-->
+    <record id="action_account_move_inoice" model="ir.actions.act_window">
+        <field name="name">Customer Bill</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref=""/>
+        <field name="domain">[('move_type', '=', 'out_invoice'),('project_id','!=',False)]</field>
+        <field name="context">{'default_move_type': 'out_invoice','default_is_customer_project' : True,'group_by':
+            'project_id'}</field>
+        <field name="view_id" ref="account.view_out_invoice_tree"/>
     </record>
+
 
     <!--ACTION (Customer Payment) [contract.contract]-->
     <record id="action_view_customer_payment" model="ir.actions.act_window">
@@ -327,18 +347,59 @@
         <field name="res_model">account.payment</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref=""/>
-        <field name="domain">[('is_customer_payment', '=', True)]</field>
+        <field name="domain">[('is_customer_payment', '=', True),('partner_type', '=', 'customer'),('project_id','!=',False)]</field>
         <field name="context">{'default_is_customer_payment' : True, 'default_payment_type' : 'inbound', 'form_view_ref':
-            'account.view_account_payment_form'}
+            'account.view_account_payment_form','group_by':'project_id'}
         </field>
         <field name="view_id" ref="account.view_account_payment_tree"/>
     </record>
 
     <!--MENU [Customer Payment]-->
+     <menuitem id="menu_customer"
+              name="Customer"
+              parent="construction_management"
+              sequence="4"/>
+
+    <menuitem id="menu_customer_bill"
+              name="Customer Bill"
+              parent="menu_customer"
+              sequence="3"
+              action="action_account_move_inoice"/>
+
     <menuitem id="menu_customer_payment"
               name="Customer Payment"
-              parent="construction_management"
+              parent="menu_customer"
               sequence="4"
               action="action_view_customer_payment"/>
+
+     <!--Customer Payment Form View Inherit -->
+    <record id="customer_payment_form_view_inherit" model="ir.ui.view">
+        <field name="name">account.payment.form.view.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="is_customer_payment" invisible="1"/>
+                <field name="project_id" options="{'no_create': True, 'no_open': True}"
+                       attrs="{'invisible':[('is_customer_payment','!=',True)],'required':[('is_customer_payment','=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+     <!--Customer Bill Form View Inherit -->
+    <record id="customer_move_form_view_inherit" model="ir.ui.view">
+        <field name="name">account.move.form.view.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_reference']" position="before">
+                <field name="is_customer_project" invisible="1"/>
+                <field name="project_id" options="{'no_create': True, 'no_open': True}"
+                       attrs="{'invisible':[('is_customer_project','!=',True)],'required':[('is_customer_project','=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+
 
 </odoo>

@@ -37,12 +37,12 @@
 
 
         <!-- menuitem -->
-        <menuitem id="menu_project_analysis_report"
-                  name = "Reporting"
-                  parent = "construction_management"
-                  action="project_task_action_dashboard"
-                  groups = "abs_construction_management_community.group_construction_manager"
-                  sequence="7"/>
+<!--        <menuitem id="menu_project_analysis_report"-->
+<!--                  name = "Reporting"-->
+<!--                  parent = "construction_management"-->
+<!--                  action="project_task_action_dashboard"-->
+<!--                  groups = "abs_construction_management_community.group_construction_manager"-->
+<!--                  sequence="7"/>-->
 
     </data>
 </odoo>

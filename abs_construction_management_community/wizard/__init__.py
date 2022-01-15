@@ -19,3 +19,5 @@
 #
 #################################################################################
 from . import create_purchase_order
+from . import transfer_project_stock
+from . import transfer_stock_project

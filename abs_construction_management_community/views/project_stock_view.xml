@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- PROJECT STOCK VIEW -->
+        <record id="project_stock_form_view" model="ir.ui.view">
+            <field name="name">project_stock.form</field>
+            <field name="model">project.stock</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle" create="0">
+                    <header>
+                            <button class="btn btn-primary" type="action" groups="abs_construction_management_community.group_construction_user"
+                                    name="%(abs_construction_management_community.action_wizard_transfer_project_store)d" string="Transfer To Store"/>
+                        </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_stock_transfer"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-list-alt" attrs="{'invisible': [('project_stock_count', '=', 0)]}">
+                                <field name="project_stock_count" widget="statinfo"/>
+                            </button>
+                        </div>
+
+                        <div class="oe_title">
+                            <label for="product_id"/>
+                            <h1>
+                                <field name="product_id" placeholder="Product" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                                <group>
+                                    <field name="state" invisible="1"/>
+                                    <field name="qauntity" readonly="1"/>
+                                    <field name="used_qauntity"/>
+                                    <field name="remain_qty"/>
+                                </group>
+                                <group>
+                                    <field name="unit_price"/>
+                                    <field name="tax_id"/>
+                                    <field name="amount_total"/>
+                                    <field name="project_id" invisible="1"/>
+                                </group>
+                        </group>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="project_stock_tree_view" model="ir.ui.view">
+            <field name="name">project_stock.tree</field>
+            <field name="model">project.stock</field>
+            <field name="arch" type="xml">
+                <tree string="ModelTitle">
+                    <field name="product_id"/>
+                    <field name="unit_price"/>
+                     <field name="tax_id"/>
+                    <field name="amount_total"/>
+                    <field name="qauntity"/>
+                    <field name="used_qauntity"/>
+                    <field name="remain_qty"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="project_stock_search_view" model="ir.ui.view">
+            <field name="name">project_stock.search</field>
+            <field name="model">project.stock</field>
+            <field name="arch" type="xml">
+                <search string="Project Stock">
+                    <group expand="1" string="Group By">
+                        <filter string="Product" name="product_id" domain="[]"
+                                context="{'group_by':'product_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="project_stock_act_window" model="ir.actions.act_window">
+            <field name="name">Project Stock</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">project.stock</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+<!--        <menuitem name="Project Stock" id="project_stock_menu" parent="construction_management" action="project_stock_act_window"/>-->
+
+        <!-- PRODUCT STOCK VIEW -->
+        <record id="store_product_product_form_view" model="ir.ui.view">
+            <field name="name">store.product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle" create="0">
+                    <header>
+                            <button class="btn btn-primary" type="action" groups="abs_construction_management_community.group_construction_manager"
+                                    name="%(abs_construction_management_community.action_wizard_transfer_store_project)d" string="Transfer To Project"/>
+                        </header>
+                    <sheet>
+
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="name" readonly="1"/>
+                            </h1>
+                        </div>
+                         <div class="oe_title">
+                            <label for="total_stock_qty"/>
+                            <h1>
+                                <field name="total_stock_qty" placeholder="Total Stock Qauntity" readonly="1"/>
+                                <field name="stock_history_qty" invisible="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                           <label for="product_stock_ids"/>
+                        </group>
+                         <field name="product_stock_ids">
+                                <tree editable="bottom">
+                                    <field name="title" invisible="1"/>
+                                    <field name="project_id"/>
+                                    <field name="state"  invisible="1"/>
+                                    <field name="qauntity"/>
+                                    <field name="unit_price"/>
+                                    <field name="tax_id"/>
+                                    <field name="amount_total"/>
+                                </tree>
+                            </field>
+                    </sheet>
+                      <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="store_product_product_tree_view" model="ir.ui.view">
+            <field name="name">store.product.product.tree</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree string="Product">
+                    <field name="name"/>
+                    <field name="total_stock_qty"/>
+                    <field name="stock_history_qty" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="store_product_product_act_window" model="ir.actions.act_window">
+            <field name="name">Store</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('stock_history_qty','&gt;',0)]</field>
+             <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('store_product_product_tree_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('store_product_product_form_view')})]"/>
+        </record>
+
+        <menuitem name="Store" id="project_store_menu" parent="construction_management"
+                  groups="abs_construction_management_community.group_construction_manager" action="store_product_product_act_window"/>
+
+
+    </data>
+</odoo>

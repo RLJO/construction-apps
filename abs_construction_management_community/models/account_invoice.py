@@ -30,3 +30,17 @@ class AccountMove(models.Model):
     work_order_id = fields.Many2one('project.task', string='Work order')
     product_type_id = fields.Selection([('material','Material'),('equipment','Equipment'),('service','Service'),('labour','Labour'),('vehicle','Vehicle')],string = "Request Type")
 
+    def action_post(self):
+        res = super(AccountMove, self).action_post()
+        if self.product_type_id and self.project_id:
+            print("=================self==============", self.product_type_id)
+            if self.product_type_id=='material' or self.product_type_id=='equipment':
+                for line in self.invoice_line_ids:
+                    project_stock = self.env['project.stock'].sudo().create({
+                        'product_id': line.product_id.id,
+                        'project_id': self.project_id.id,
+                        'qauntity': line.quantity,
+                        'unit_price': line.price_unit,
+                        'tax_id': line.tax_ids[0].id if line.tax_ids else False,
+                    })
+        return res

@@ -26,6 +26,12 @@
                             icon="fa-list-ul">
                         <field name="invoice_count" widget="statinfo"/>
                     </button>
+                    <button name="action_view_stock"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-exchange">
+                        <field name="stock" widget="statinfo"/>
+                    </button>
                     <button name="action_view_sub_contract"
                             type="object"
                             class="oe_stat_button"
@@ -38,26 +44,35 @@
                             icon="fa-list-alt" attrs="{'invisible': [('customer_contract_count', '=', 0)]}">
                         <field name="customer_contract_count" widget="statinfo"/>
                     </button>
-                    <button name="action_view_customer_payment"
+                    <button name="action_view_customer_payment" invisible="1"
                             type="object"
                             class="oe_stat_button"
-                            icon="fa-list-alt" attrs="{'invisible': [('customer_payment_count', '=', 0)]}">
+                            icon="fa-money" attrs="{'invisible': [('customer_payment_count', '=', 0)]}">
                         <field name="customer_payment_count" widget="statinfo"/>
                     </button>
                 </xpath>
                 <notebook>
-                    <page name="costing" string="Costing">
+                    <page name="costing" string="Financial">
                         <group string = "Estimation Costing">
                             <field name="estimation_sheet_cost"/>
                         </group>
-                        <group string = "Real Costing">
-                            <field name="material_cost"/>
+                        <group >
+                            <group string = "Real Costing">
+                                 <field name="material_cost"/>
                             <field name="equipment_cost"/>
                             <field name="service_cost"/>
                             <field name="labour_cost"/>
                             <field name="vehicle_cost"/>
+                            <field name="sub_contract_cost"/>
                             <field name="extra_material_cost" invisible="1"/>
                             <field name="project_issue_cost" invisible="1"/>
+                            </group>
+                             <group string="Customer Account">
+                                <field name="contract_amount"/>
+                                <field name="customer_payment"/>
+                                <field name="diff_customer_amount"/>
+                            </group>
+
                         </group>
                         <group string = "Total Costing">
                             <field name="total_amount"/>
@@ -130,6 +145,48 @@
             <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="attributes">
                 <attribute name="domain">['|',('product_type_id', '=', product_type_id),('is_project', '=', is_project)]</attribute>
             </xpath>
+
+            <!-- NEW CODE -->
+<!--            <xpath expr="/form/header/field[@name='state']"  position="replace">-->
+<!--                 <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="/form/header/button[@name='print_quotation']"  position="after">-->
+<!--                  <button name="submit_for_approval" string="Send For Approval" type="object" class="oe_highlight"-->
+<!--                            groups="abs_construction_management_community.group_construction_user"-->
+<!--                        attrs="{'invisible': [('state', 'in', ['send_for_approval', 'purchase', 'done', 'cancel'])]}"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="/form/header/button[@name='button_confirm']"  position="replace">-->
+<!--                   <button name="button_confirm" type="object" states="draft,sent" string="Confirm Order"-->
+<!--                            groups="abs_construction_management_community.group_construction_manager" id="draft_confirm"/>-->
+<!--            </xpath>-->
+
+            <xpath expr="/form/header"  position="replace">
+                <header>
+                    <button name="action_rfq_send" states="draft" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight" invisible="1"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="draft" class="oe_highlight" groups="base.group_user" invisible="1"/>
+                    <button name="button_confirm" type="object" states="sent" string="Confirm Order" class="oe_highlight" id="bid_confirm" groups="abs_construction_management_community.group_construction_manager"/>
+                    <button name="submit_for_approval" string="Send For Approval" type="object" class="oe_highlight"
+                            groups="abs_construction_management_community.group_construction_user"
+                        attrs="{'invisible': [('state', 'in', ['sent', 'purchase', 'done', 'cancel'])]}"/>
+                    <button name="button_approve" type="object" states='to approve' string="Approve Order" class="oe_highlight" groups="purchase.group_purchase_manager"/>
+                    <button name="action_create_invoice" string="Create Bill" type="object" class="oe_highlight" context="{'create_bill':True}" attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('invoice_status', 'in', ('no', 'invoiced'))]}"/>
+                    <button name="action_rfq_send" states="sent" string="Re-Send by Email" type="object" context="{'send_rfq':True}" invisible="1"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="sent" groups="base.group_user" invisible="1"/>
+                    <button name="button_confirm" type="object" states="draft" string="Confirm Order"  class="oe_highlight"
+                            groups="abs_construction_management_community.group_construction_manager" id="draft_confirm"/>
+                    <button name="action_rfq_send" states="purchase" string="Send PO by Email" type="object" context="{'send_rfq':False}" invisible="1"/>
+                    <button name="confirm_reminder_mail" string="Confirm Receipt Date" type="object" invisible="1"/>
+                    <button name="action_create_invoice" string="Create Bill" type="object" groups="abs_construction_management_community.group_construction_manager"
+                            context="{'create_bill':True}" attrs="{'invisible': ['|', '|', ('state', 'not in', ('purchase', 'done')), ('invoice_status', 'not in', ('no', 'invoiced')), ('order_line', '=', [])]}"/>
+                    <button name="button_draft" states="cancel" string="Set to Draft" type="object" />
+                    <button name="button_cancel" states="sent,to approve,sent,purchase" string="Cancel" type="object" />
+                    <button name="button_done" type="object" string="Lock" states="purchase" invisible="1"/>
+                    <button name="button_unlock" type="object" string="Unlock" states="done" groups="purchase.group_purchase_manager" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase"/>
+                </header>
+            </xpath>
+
+
         </field>
     </record>
 
@@ -146,5 +203,9 @@
             </xpath>
         </field>
     </record>
+
+
+
+
 
 </odoo>

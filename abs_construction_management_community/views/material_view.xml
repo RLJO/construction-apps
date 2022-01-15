@@ -43,7 +43,7 @@
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref=""/>
         <field name="domain">[('product_type_id','=','material')]</field>
-        <field name="context">{'default_product_type_id':'material'}</field>
+        <field name="context">{'default_product_type_id':'material','default_type':'product'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to define a new product.
@@ -60,7 +60,7 @@
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref=""/>
         <field name="domain">[('product_type_id','=','equipment')]</field>
-        <field name="context">{'default_product_type_id' : 'equipment'}</field>
+        <field name="context">{'default_product_type_id' : 'equipment','default_type':'product'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to define a new product.
@@ -76,7 +76,7 @@
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref=""/>
         <field name="domain">[('product_type_id','=','vehicle')]</field>
-        <field name="context">{'default_product_type_id' : 'vehicle'}</field>
+        <field name="context">{'default_product_type_id' : 'vehicle','default_type':'service'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to define a new product.
@@ -92,7 +92,7 @@
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref=""/>
         <field name="domain">[('product_type_id','=','labour')]</field>
-        <field name="context">{'default_product_type_id' : 'labour'}</field>
+        <field name="context">{'default_product_type_id' : 'labour','default_type':'service'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to define a new product.
@@ -108,7 +108,7 @@
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref=""/>
         <field name="domain">[('product_type_id','=','service')]</field>
-        <field name="context">{'default_product_type_id' : 'service'}</field>
+        <field name="context">{'default_product_type_id' : 'service','default_type':'service'}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to define a new product.
@@ -129,6 +129,53 @@
                 <field name="work_order_id" domain="[('project_id','=', project_id)]"
                        options="{'no_create': True, 'no_open': True}"
                        attrs="{'invisible':[('is_sub_contract','!=',True)],'required':[('is_sub_contract','=',True)]}"/>
+            </xpath>
+            <xpath expr="//notebook/page[@name='recurring_invoice_line']" position="attributes">
+               <attribute name="attrs">{'invisible':[('is_sub_contract','!=',False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_recurrence']" position="attributes">
+               <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//label[@for='line_recurrence']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//header" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position = 'attributes'>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='recurring_invoice_line']" position="before">
+                <page string="Sub Contract Details">
+                    <group>
+                        <group>
+                            <field name="customer_contract_type"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <group attrs="{'invisible':[('customer_contract_type','!=','bulk')]}">
+                        <group>
+                            <field name="bulk_cost"/>
+                            <field name="bulk_tax_id"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <field name="sub_contract_line_ids" nolabel="1"
+                           attrs="{'invisible':[('customer_contract_type','!=','phase')]}">
+                        <tree editable="bottom">
+                            <field name="phase" required="1"/>
+                            <field name="description" required="1"/>
+                            <field name="product_qty"/>
+                            <field name="price_unit"/>
+                            <field name="tax_id"/>
+                            <field name="subcontract_amount_total"/>
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                        <field name="sub_contract_amount_total" widget='monetary'
+                               options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>
@@ -153,13 +200,62 @@
         <field name="model">contract.contract</field>
         <field name="inherit_id" ref="contract.contract_contract_customer_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='partner_id']" position="after">
+            <xpath expr="//field[@name='partner_id']" position="before">
                 <field name="is_customer_contract" invisible="1"/>
+                <field name="is_sub_contract" invisible="1"/>
                 <field name="project_id" options="{'no_create': True, 'no_open': True}"
                        attrs="{'invisible':[('is_customer_contract','!=',True)],'required':[('is_customer_contract','=',True)]}"/>
-                <field name="work_order_id" domain="[('project_id','=', project_id)]"
-                       options="{'no_create': True, 'no_open': True}"
-                       attrs="{'invisible':[('is_customer_contract','!=',True)],'required':[('is_customer_contract','=',True)]}"/>
+<!--                <field name="work_order_id" domain="[('project_id','=', project_id)]"-->
+<!--                       options="{'no_create': True, 'no_open': True}"-->
+<!--                       attrs="{'invisible':[('is_customer_contract','!=',True)],'required':[('is_customer_contract','=',True)]}"/>-->
+            </xpath>
+              <xpath expr="//notebook/page[@name='recurring_invoice_line']" position="attributes">
+               <attribute name="attrs">{'invisible':[('is_customer_contract','!=',False)]}</attribute>
+            </xpath>
+             <xpath expr="//field[@name='line_recurrence']" position="attributes">
+               <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//label[@for='line_recurrence']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//header" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position = 'attributes'>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='recurring_invoice_line']" position="before">
+                <page string="Contract Details">
+                    <group>
+                        <group>
+                            <field name="customer_contract_type"/>
+                        </group>
+                        <group></group>
+
+                    </group>
+                    <group attrs="{'invisible':[('customer_contract_type','!=','bulk')]}">
+                        <group>
+                            <field name="bulk_cost"/>
+                            <field name="bulk_tax_id"/>
+                        </group>
+                        <group></group>
+
+                    </group>
+                    <field name="customer_contract_line_ids" nolabel="1"
+                           attrs="{'invisible':[('customer_contract_type','!=','phase')]}">
+                        <tree editable="bottom">
+                            <field name="phase" required="1"/>
+                            <field name="description" required="1"/>
+                            <field name="price_unit"/>
+                            <field name="tax_id"/>
+                            <field name="customer_amount_total"/>
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                        <field name="contract_amount_total" widget='monetary'
+                               options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>
@@ -180,7 +276,7 @@
 
     <!--MENU [Materials]-->
     <menuitem id="menu_materials"
-              name="Type Request"
+              name="Product Defination"
               parent="construction_management"
               groups="abs_construction_management_community.group_construction_user"
               sequence="6"/>
@@ -220,14 +316,14 @@
 
     <menuitem id="menu_sub_contract"
               name="Sub Contract Request"
-              parent="menu_materials"
+              parent="menu_job_costs"
               action="action_sub_contract"
               sequence="5"/>
 
     <!--MENU [Customer Contract]-->
     <menuitem id="menu_customer_contract"
               name="Customer Contract"
-              parent="menu_job_costs"
+              parent="menu_customer"
               sequence="3"
               action="action_customer_contract"
               groups="abs_construction_management_community.group_construction_user"/>

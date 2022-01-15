@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Store Transfer VIEW -->
+        <record id="store_transfer_form_view" model="ir.ui.view">
+            <field name="name">store.transfer.form</field>
+            <field name="model">store.transfer</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle" create="0" write="0">
+                    <header>
+                        <button class="btn btn-primary" type="object"
+                                groups="abs_construction_management_community.group_construction_manager"
+                                name="transfer_stock" attrs="{'invisible': [('state', '!=', 'draft')]}"
+                                string="Transfer To Store"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,transfer"/>
+                    </header>
+                    <sheet>
+
+                        <div class="oe_title">
+                            <label for="product_id"/>
+                            <h1>
+                                <field name="product_id" placeholder="Product" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="transfer_qty" />
+                                <field name="unit_price"/>
+                                <field name="tax_id"/>
+                                <field name="project_id" invisible="1"/>
+                                <field name="project_stock_id" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="store_transfer_tree_view" model="ir.ui.view">
+            <field name="name">store.transfer.tree</field>
+            <field name="model">store.transfer</field>
+            <field name="arch" type="xml">
+                <tree string="ModelTitle">
+                    <field name="product_id"/>
+                    <field name="transfer_qty"/>
+                    <field name="unit_price"/>
+                    <field name="tax_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="store_transfer_act_window" model="ir.actions.act_window">
+            <field name="name">Store Transfer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">store.transfer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+<!--        <menuitem name="Store Transfer" id="store_transfer_menu" parent="construction_management" action="store_transfer_act_window"/>-->
+
+    </data>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="wizard_transfer_store_project_form" model="ir.ui.view">
+        <field name="name">Transfer</field>
+        <field name="model">transfer.store.project</field>
+        <field name="arch" type="xml">
+            <form string="Transfer">
+                <group>
+<!--                    <field name="product_stock_id" options="{'no_open': True, 'no_create_edit': True}"/>-->
+                    <field name="project_id" required="1"/>
+                    <field name="product_id" readonly="1"/>
+                    <field name="available_qty" readonly="1"/>
+                    <field name="transfer_qty" required="1"/>
+                    <field name="unit_price" required="1"/>
+                    <field name="tax_id"/>
+                </group>
+                <footer>
+                    <button name="button_create" string="Transfer" type="object"
+                        class="oe_highlight"/>
+                    or
+                    <button special="cancel" string="_Cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_transfer_store_project" model="ir.actions.act_window">
+        <field name="name">Transfer</field>
+        <field name="res_model">transfer.store.project</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_transfer_store_project" />
+    </record>
+
+
+
+
+</odoo>
